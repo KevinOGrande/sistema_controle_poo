@@ -15,6 +15,7 @@ session_destroy();
         <input type="password" name="senha">
         <input type="submit" value="enviar">
     </form>
+    <a href="cadaluno.php">Cadastro de aluno</a>
 </body>
 </html>
 <?php
