@@ -30,6 +30,24 @@ class Aluno{
             $corn=NULL;
         }
     }
+    public function PesquisaAluno(){
+        try{
+            $corn = new PDO("mysql:host={$this->host};dbname={$this->dbname}",$this->user,$this->pass);
+            $corn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+            $sql= "SELECT * FROM aluno WHERE matricula= :matricula";
+            $requisicao_aluno = $corn->prepare($sql);
+            $requisicao_aluno->bindValue(":matricula",$this->identidade);
+            $requisicao_aluno->execute();
+            $linha_pesquisa = $requisicao_aluno->fetch(PDO::FETCH_ASSOC);
+            if($linha_pesquisa){
+                return $linha_pesquisa;
+            }
+        }catch(PDOException $e){
+            echo "tem erro:".$e;
+        }finally{
+            $corn=NULL;
+        }
+    }
 }
 
 
