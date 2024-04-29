@@ -40,13 +40,8 @@ if(isset($_SESSION['login_senai']) && $_SESSION['login_senai'] === true){
         </html>
         <?php
     }else{
-        require_once "aluno.php";
-        $pesquisa=null;
-        $pesquisa = new Aluno($_GET['pesquisa']);
-        $resutado = $pesquisa->PesquisaAluno(); 
-        if($resutado){
-            echo $resutado['nome'];
-        }
+        $_SESSION['pesquisa_aluno'] = $_GET['pesquisa'];
+        header("location:pesquisa_aluno.php");
     }
 }else{
     header("location:login.php");
