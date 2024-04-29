@@ -114,8 +114,5 @@ class Empresa{
         }
     }
 }
-class Aluno extends Empresa{
-    protected $tabela = "aluno";
-    protected $diretorio = "diretorio_aluno";
-}
+
 ?>

@@ -22,7 +22,10 @@ class Aluno{
             $cad->bindValue(":senha",$senha);
             $cad->bindValue(":status_aluno",$status);
             if($cad->execute()){
-                return true;   
+                $caminho= "C:/xampp/htdocs/estudo/sistema_controle_poo/diretorio_aluno/".$this->identidade;
+                if(mkdir($caminho,0777)){
+                    return true;
+                }  
             }
         }catch(PDOException $e){
             echo "tem erro:".$e;
