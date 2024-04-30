@@ -13,7 +13,10 @@ class Aluno{
         try{
             $corn = new PDO("mysql:host={$this->host};dbname={$this->dbname}",$this->user,$this->pass);
             $corn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-            $sql= "INSERT INTO aluno(matricula,nome,telefone,usuario,senha,status_aluno)VALUES(:matricula,:nome,:telefone,:usuario,:senha,:status_aluno)";
+            $duplicidade = $corn->query("SELECT * FROM aluno WHERE usuario = $usuario OR matricula = $this->identidade");
+            $linha = $duplicidade->fetch(PDO::FETCH_ASSOC);
+            if($linha){
+                $sql= "INSERT INTO aluno(matricula,nome,telefone,usuario,senha,status_aluno)VALUES(:matricula,:nome,:telefone,:usuario,:senha,:status_aluno)";
             $cad = $corn->prepare($sql);
             $cad->bindValue(":matricula",$this->identidade);
             $cad->bindValue(":nome",$nome);
@@ -24,9 +27,14 @@ class Aluno{
             if($cad->execute()){
                 $caminho= "C:/xampp/htdocs/estudo/sistema_controle_poo/diretorio_aluno/".$this->identidade;
                 if(mkdir($caminho,0777)){
-                    return true;
+                    $caminho= "C:/xampp/htdocs/estudo/sistema_controle_poo/diretorio_aluno/".$this->identidade."/falta";
+                    if(mkdir($caminho,0777)){
+                        return true;
+                    }
                 }  
             }
+            }
+            
         }catch(PDOException $e){
             echo "tem erro:".$e;
         }finally{

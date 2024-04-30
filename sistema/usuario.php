@@ -48,6 +48,23 @@ class Usuario{
             echo "tem erro:".$e;
         }
     }
+    public function UserAluno(){
+        try{
+            $corn = new PDO("mysql:host={$this->host};dbname={$this->dbname}",$this->user,$this->pass);
+            $corn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+            $sql = "SELECT matricula FROM aluno WHERE usuario= :usuario and senha= :senha";
+            $requsicao_aluno = $corn->prepare($sql);
+            $requsicao_aluno->bindValue(":usuario",$this->usuario);
+            $requsicao_aluno->bindValue(":senha",$this->senha);
+            $requsicao_aluno->execute();
+            $linha_aluno = $requsicao_aluno-> fetch(PDO::FETCH_ASSOC);
+            if($linha_aluno){
+                return $linha_aluno;
+            }    
+        }catch(PDOException $e){
+            echo "tem erro:".$e;
+        }
+    }
     public function CadastroUsuario($nome){
         try{
             $corn = new PDO("mysql:host={$this->host};dbname={$this->dbname}",$this->user,$this->pass);
