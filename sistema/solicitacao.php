@@ -29,6 +29,19 @@ class Solicitacao{
             $corn=NULL;
         }
     }
+    public function ListaSolicitacao(){
+        try{
+            $corn = new PDO("mysql:host={$this->host};dbname={$this->dbname}",$this->user,$this->pass);
+            $corn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+            if($lista=$corn->query("SELECT * FROM solicitacao WHERE status_pedido = 'Em Analise'")){
+                return $lista;
+            }
+        }catch(PDOException $e){
+            echo "tem erro:".$e;
+        }finally{
+            $corn=null;
+        }
+    }
 }
 
 ?>

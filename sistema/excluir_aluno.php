@@ -10,7 +10,7 @@ if(isset($_SESSION['login_senai']) && $_SESSION['login_senai'] === true){
         <title>Document</title>
     </head>
     <body>
-        <form action="excluir.php" method="post">
+        <form action="excluir_aluno.php" method="post">
             <input type="hidden" name="identidade" value="<?php echo $_POST['identidade'];?>">
             <input type="text" name="usuario" id="usuario" require>            
             <input type="password" name="senha" id="senha">
@@ -20,16 +20,10 @@ if(isset($_SESSION['login_senai']) && $_SESSION['login_senai'] === true){
     </html>
     <?php
     if(isset($_POST['usuario'])){
-        require_once "empresa.php";
-        $excluir = new Empresa($_POST['identidade']);
-        if($resultado = $excluir->ExcluirEmpresa($_POST['usuario'],$_POST['senha'])){
+        require_once "aluno.php";
+        $excluir = new Aluno($_POST['identidade']);
+        if($resultado = $excluir->ExcluirAluno($_POST['usuario'],$_POST['senha'])){
             echo $resultado;
-        }else{
-            require_once "aluno.php";
-            $excluir = new Aluno($_POST['identidade']);
-            if($resultado = $excluir->ExcluirAluno($_POST['usuario'],$_POST['senha'])){
-                echo $resultado;
-            }
         }
     }
 }else{

@@ -24,7 +24,6 @@
 
 if(isset($_GET['matricula'])){
     require_once "aluno.php";
-
     $cadastro = new Aluno($_GET['matricula']);
     if($cadastro->CadAluno($_GET['nome'],$_GET['usuario'],$_GET['senha'],$_GET['telefone'],$_GET['status'])){
         echo "Cadastrado";

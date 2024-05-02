@@ -16,17 +16,23 @@ class Empresa{
         try{
             $corn = new PDO("mysql:host={$this->host};dbname={$this->dbname}",$this->user,$this->pass);
             $corn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-            $sql= "INSERT INTO $this->tabela(cnpj,nome_empresa,telefone,usuario,senha)VALUES(:cnpj,:nome_empresa,:telefone,:usuario,:senha)";
-            $cad = $corn->prepare($sql);
-            $cad->bindValue(":cnpj",$this->identidade);
-            $cad->bindValue(":nome_empresa",$nome);
-            $cad->bindValue(":telefone",$telefone);
-            $cad->bindValue(":usuario",$usuario);
-            $cad->bindValue(":senha",$senha);
-            if($cad->execute()){
-                $caminho= "C:/xampp/htdocs/estudo/sistema_controle_poo/".$this->diretorio."/".$this->identidade;
-                if(mkdir($caminho,0777)){
-                    return true;
+            $duplicidade = $corn->query("SELECT * FROM empresa WHERE cnpj='$this->identidade' OR usuario='$usuario'");
+            $linha = $duplicidade->fetch(PDO::FETCH_ASSOC);
+            if($linha){
+                return false;
+            }else{
+                $sql= "INSERT INTO $this->tabela(cnpj,nome_empresa,telefone,usuario,senha)VALUES(:cnpj,:nome_empresa,:telefone,:usuario,:senha)";
+                $cad = $corn->prepare($sql);
+                $cad->bindValue(":cnpj",$this->identidade);
+                $cad->bindValue(":nome_empresa",$nome);
+                $cad->bindValue(":telefone",$telefone);
+                $cad->bindValue(":usuario",$usuario);
+                $cad->bindValue(":senha",$senha);
+                if($cad->execute()){
+                    $caminho= "C:/xampp/htdocs/estudo/sistema_controle_poo/".$this->diretorio."/".$this->identidade;
+                    if(mkdir($caminho,0777)){
+                        return true;
+                    }
                 }
             }
         }catch(PDOException $e){
