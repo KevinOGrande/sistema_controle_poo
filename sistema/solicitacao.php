@@ -42,6 +42,23 @@ class Solicitacao{
             $corn=null;
         }
     }
+    public function MudarStatus($status_pedido){
+        try{
+            $corn = new PDO("mysql:host={$this->host};dbname={$this->dbname}",$this->user,$this->pass);
+            $corn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+            $sql = "UPDATE solicitacao SET status_pedido = :pedido WHERE matricula='$this->identidade'";
+            $atualiza = $corn->prepare($sql);
+            $atualiza->bindValue(":matricula",$this->identidade);
+            $atualiza->bindValue(":pedido",$status_pedido);
+            if($atualiza->execute()){
+                return true;
+            }
+        }catch(PDOException $e){
+            echo "tem erro:".$e;
+        }finally{
+            $corn=NULL;
+        }
+    }
 }
 
 ?>
