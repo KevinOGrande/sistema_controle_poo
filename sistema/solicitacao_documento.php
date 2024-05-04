@@ -11,15 +11,27 @@ if(isset($_SESSION['login_aluno']) && $_SESSION['login_aluno'] == true){
     </head>
     <body>
         <form action="solicitacao_documento.php" method="get">
-            <select name="pedido" id="pedido" require>
-                <option value="segunda via carteira estudantil">2ª via de carteirinha estudantil - R$ 10,00</option>
-                <option value="declaracao de transferencia">Declaração de Transferência - R$ 15,00</option>
-                <option value="declaracao de matricula">Declaração de matrícula - Gratuito</option>
-                <option value="carta para estagio optativo">Carta de apresentação para estágio optativo - Gratuito</option>
-                <option value="Ementa Escolar">Ementa Escolar - R$ 20,00 por disciplina com teto máximo de R$ 100,00</option>
-                <option value="Historico Parcial">Histórico Parcial - R$ 15,00</option>
-                <option value="recuperacao">Recuperação - R$ 10,00</option>
-            </select>
+            <input type="radio" name="pedido" id="segunda_via" value="segunda via carteira estudantil">
+            <label>2ª via de carteirinha estudantil - R$ 10,00</label>
+            <br>
+            <input type="radio" name="pedido" id="tranferencia" value="declaracao de transferencia">
+            <label>Declaração de Transferência - R$ 15,00</label>
+            <br>
+            <input type="radio" name="pedido" id="matricula" value="declaracao de matricula">
+            <label>Declaração de matrícula - Gratuito</label>
+            <br>
+            <input type="radio" name="pedido" id="estagio" value="carta para estagio optativo">
+            <label>Carta de apresentação para estágio optativo - Gratuito</label>
+            <br>
+            <input type="radio" name="pedido" id="ementa" value="Ementa Escolar">
+            <label>Ementa Escolar - R$ 20,00 por disciplina com teto máximo de R$ 100,00</label>
+            <br>
+            <input type="radio" name="pedido" id="Historico_Parcial" value="Historico Parcial">
+            <label>Histórico Parcial - R$ 15,00</label>
+            <br>
+            <input type="radio" name="pedido" id="recuperacao" value="recuperacao">
+            <label>Recuperação - R$ 10,00</label>
+            <br>
             <input type="text" name="observacao" id="observacao">
             <input type="submit" value="enviar">
         </form>

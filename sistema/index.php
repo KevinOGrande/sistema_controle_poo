@@ -13,6 +13,7 @@ if(isset($_SESSION['login_senai']) && $_SESSION['login_senai'] === true){
         <a href="cad_usuario.php">Cadastro usuario</a>
         <a href="cad_empresa.php">Cadastro empresa</a>
         <a href="lista_empresa.php">Lista Empresa</a>
+        <a href="lista_solicitacao.php">lista solicitacao</a>
         <form action="pesquisa.php" method="get">
             <input type="text" name="pesquisa">
             <input type="submit" value="pesquisar">

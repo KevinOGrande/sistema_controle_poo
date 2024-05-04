@@ -71,7 +71,7 @@ INSERT INTO `empresa` (`cnpj`, `telefone`, `nome_empresa`, `usuario`, `senha`) V
 --
 
 CREATE TABLE `solicitacao` (
-  `id` int(8) NOT NULL,
+  `id` int(8) NOT NULL primary key auto_increment,
   `matricula` char(10) DEFAULT NULL,
   `pedido` varchar(20) DEFAULT NULL,
   `status_pedido` varchar(20) DEFAULT NULL,
