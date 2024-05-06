@@ -37,11 +37,11 @@ if(isset($_SESSION['login_senai']) && $_SESSION['login_senai'] === true){
                         <th><?php echo $linha['pedido'];?></th>
                         <th><?php echo $linha['descricao'];?></th>
                         <?php
-                        if($linha['pedido']!= "carta para estagio optativo" && $linha['pedido']!= "declaracao de matricula"){
+                        if($linha['pedido']!= "carta para estagio optativo" && $linha['pedido']!= "declaracao de matricula" && $linha['status_pedido'] == "Em Analise"){
                             ?>
                             <th>
                                 <form action="upload.php" method="post" enctype="multipart/form-data">
-                                    <input type="hidden" name="identidade" value="<?php echo $linha['matricula'];?>">
+                                    <input type="hidden" name="matricula" value="<?php echo $linha['matricula'];?>">
                                     <input type="hidden" name="id" value="<?php echo $linha['id']?>">
                                     <input type="file" name="arquivo" id="arquivo">
                                     <input type="submit" value="enviar">

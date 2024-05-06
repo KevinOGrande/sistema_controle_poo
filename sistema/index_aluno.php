@@ -11,6 +11,7 @@ if(isset($_SESSION['login_aluno']) && $_SESSION['login_aluno'] == true){
     </head>
     <body>
         <a href="solicitacao_documento.php">Solicitação de documentos</a>
+        <a href="solicitacao_pendente.php">Solicitações Pendentes</a>
     </body>
     </html>
 

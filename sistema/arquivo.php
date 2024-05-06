@@ -24,7 +24,10 @@ class Arquivo{
     }
     public function AddBoleto($upload,$id){
         $caminho = "C:/xampp/htdocs/estudo/sistema_controle_poo/diretorio_aluno/".$this->identidade."/solicitacao/Boleto_pedido_".$id.".pdf";
-        move_uploaded_file($upload['tmp_name'],$caminho);
+        if(move_uploaded_file($upload['tmp_name'],$caminho)){
+            return true;
+        }
+        
     }
 }
 ?>
