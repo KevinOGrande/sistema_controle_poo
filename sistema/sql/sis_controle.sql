@@ -75,7 +75,7 @@ CREATE TABLE `solicitacao` (
   `matricula` char(10) DEFAULT NULL,
   `pedido` varchar(20) DEFAULT NULL,
   `status_pedido` varchar(20) DEFAULT NULL,
-  `descricao` varchar(30) DEFAULT NULL
+  `descricao` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --

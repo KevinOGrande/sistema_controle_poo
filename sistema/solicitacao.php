@@ -33,7 +33,7 @@ class Solicitacao{
         try{
             $corn = new PDO("mysql:host={$this->host};dbname={$this->dbname}",$this->user,$this->pass);
             $corn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-            if($lista=$corn->query("SELECT * FROM solicitacao WHERE status_pedido = 'Em Analise'")){
+            if($lista=$corn->query("SELECT * FROM solicitacao")){
                 return $lista;
             }
         }catch(PDOException $e){
@@ -42,13 +42,13 @@ class Solicitacao{
             $corn=null;
         }
     }
-    public function MudarStatus($status_pedido,$id){
+    public function MudarStatus($status_pedido){
         try{
             $corn = new PDO("mysql:host={$this->host};dbname={$this->dbname}",$this->user,$this->pass);
             $corn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
             $sql = "UPDATE solicitacao SET status_pedido = :pedido WHERE id= :id";
             $atualiza = $corn->prepare($sql);
-            $atualiza->bindValue(":id",$id);
+            $atualiza->bindValue(":id",$this->identidade);
             $atualiza->bindValue(":pedido",$status_pedido);
             if($atualiza->execute()){
                 return true;

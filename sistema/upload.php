@@ -9,8 +9,8 @@ if(isset($_SESSION['login_senai']) && $_SESSION['login_senai'] === true){
         $arquivo = new Arquivo($_POST['matricula']);
         if($arquivo->AddBoleto($_FILES['arquivo'],$_POST['id'])){
             require_once "solicitacao.php";
-            $status = new Solicitacao(" ");
-            $status->MudarStatus("Pagamento Pendente",$_POST['id']);
+            $status = new Solicitacao($_POST['id']);
+            $status->MudarStatus("Pagamento Pendente");
         }
         
     }

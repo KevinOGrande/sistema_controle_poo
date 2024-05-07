@@ -47,7 +47,29 @@ if(isset($_SESSION['login_senai']) && $_SESSION['login_senai'] === true){
                                     <input type="submit" value="enviar">
                                 </form>
                             </th>
+                            <th>
+                                <form action="" method="post">
+                                    <input type="hidden" name="id" value="<?php echo $linha['id']?>">
+                                    <select name="status" id="status">
+                                        <option value="solicitacao negada">Solicitação Negada</option>
+                                    </select>
+                                    <input type="submit" value="mudar">
+                                </form>
+                            </th>
                         <?php
+                        }else{
+                            ?>
+                            <th>
+                                <form action="" method="post">
+                                    <input type="hidden" name="id" value="<?php echo $linha['id']?>">
+                                    <select name="status" id="status">
+                                        <option value="pronto para retirada">Pronto para Retirada</option>
+                                        <option value="solicitacao negada">Solicitação Negada</option>
+                                    </select>
+                                    <input type="submit" value="mudar">
+                                </form>
+                            </th>
+                            <?php
                         }
                         ?>
                     </tr>
