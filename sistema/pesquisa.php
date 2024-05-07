@@ -64,19 +64,18 @@ if(isset($_SESSION['login_senai']) && $_SESSION['login_senai'] === true){
                     <form action="excluir_aluno.php" method="post">
                         <input type="hidden" name="identidade" value="<?php echo $_GET['pesquisa'];?>">
                         <input type="submit" value="excluir">
-                    </form><!--  
+                    </form>
                     <form action="atualiza.php" method="post">
-                        <input type="hidden" name="cnpj" value="<?php //echo $resutado['cnpj'];?>">
-                        <input type="hidden" name="usuario" value="<?php //echo $resutado['usuario'];?>">
-                        <input type="hidden" name="senha" value="<?php //echo $resutado['senha'];?>">
-                        <input type="hidden" name="telefone" value="<?php //echo $resutado['telefone'];?>">
+                        <input type="hidden" name="matricula" value="<?php echo $resutado['matricula'];?>">
+                        <input type="hidden" name="usuario" value="<?php echo $resutado['usuario'];?>">
+                        <input type="hidden" name="senha" value="<?php echo $resutado['senha'];?>">
+                        <input type="hidden" name="telefone" value="<?php echo $resutado['telefone'];?>">
                         <input type="submit" value="atualizar">
                     </form>
                     <form action="lista_arquivo.php" method="post">
-                        <input type="hidden" name="diretorio" value="<?php //echo $resutado['matricula'];?>">
+                        <input type="hidden" name="diretorio" value="<?php echo $resutado['matricula'];?>">
                         <input type="submit" value="ver">
                     </form>
-                    -->
                 </body>
                 </html>
             <?php

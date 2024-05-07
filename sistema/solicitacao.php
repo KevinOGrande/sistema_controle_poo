@@ -59,6 +59,19 @@ class Solicitacao{
             $corn=NULL;
         }
     }
+    public function SolicitacaoAluno(){
+        try{
+            $corn = new PDO("mysql:host={$this->host};dbname={$this->dbname}",$this->user,$this->pass);
+            $corn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+            if($lista=$corn->query("SELECT * FROM solicitacao WHERE matricula = $this->identidade")){
+                return $lista;
+            }
+        }catch(PDOException $e){
+            echo "tem erro:".$e;
+        }finally{
+            $corn=null;
+        }
+    }
 }
 
 ?>
