@@ -34,7 +34,7 @@ if(isset($_SESSION['login_senai']) && $_SESSION['login_senai'] === true){
                         <th><?php echo $linha['nome_empresa'];?></th>
                         <th><?php echo $linha['telefone'];?></th>
                         <th><form action="lista_arquivo.php" method="post">
-                            <input type="hidden" name="diretorio" value="<?php echo $linha['cnpj'];?>">
+                            <input type="hidden" name="cnpj" value="<?php echo $linha['cnpj'];?>">
                             <input type="submit" value="ver">
                         </form></th>
                         <th>

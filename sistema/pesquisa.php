@@ -33,7 +33,7 @@ if(isset($_SESSION['login_senai']) && $_SESSION['login_senai'] === true){
                 <input type="submit" value="atualizar">
             </form>
             <form action="lista_arquivo.php" method="post">
-                <input type="hidden" name="diretorio" value="<?php echo $resutado['cnpj'];?>">
+                <input type="hidden" name="cnpj" value="<?php echo $resutado['cnpj'];?>">
                 <input type="submit" value="ver">
             </form>
         </body>
@@ -56,11 +56,7 @@ if(isset($_SESSION['login_senai']) && $_SESSION['login_senai'] === true){
                     <p><?php echo $resutado['matricula'];?></p>
                     <p><?php echo $resutado['nome'];?></p>
                     <p><?php echo $resutado['status_aluno'];?></p>
-                    <form action="upload.php" method="post" enctype="multipart/form-data">
-                        <input type="hidden" name="identidade" value="<?php echo $_GET['pesquisa'];?>">
-                        <input type="file" name="arquivo" id="arquivo">
-                        <input type="submit" value="enviar">
-                    </form>
+                    
                     <form action="excluir_aluno.php" method="post">
                         <input type="hidden" name="identidade" value="<?php echo $_GET['pesquisa'];?>">
                         <input type="submit" value="excluir">
@@ -75,6 +71,10 @@ if(isset($_SESSION['login_senai']) && $_SESSION['login_senai'] === true){
                     <form action="lista_arquivo.php" method="post">
                         <input type="hidden" name="diretorio" value="<?php echo $resutado['matricula'];?>">
                         <input type="submit" value="ver">
+                    </form>
+                    <form action="lista_solicitacao_aluno.php" method="post">
+                        <input type="hidden" name="matricula" value="<?php echo $resutado['matricula']?>">
+                        <input type="submit" value="lista solicitação">
                     </form>
                 </body>
                 </html>

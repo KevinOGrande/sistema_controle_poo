@@ -1,4 +1,5 @@
 <?php
+session_start();
 if(isset($_SESSION['login_senai']) && $_SESSION['login_senai'] === true){
     require_once "solicitacao.php";
     $mudar = new Solicitacao($_POST['id']);
