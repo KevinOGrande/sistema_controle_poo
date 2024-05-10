@@ -13,9 +13,10 @@ class Aluno{
         try{
             $corn = new PDO("mysql:host={$this->host};dbname={$this->dbname}",$this->user,$this->pass);
             $corn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-            $duplicidade = $corn->query("SELECT * FROM aluno WHERE matricula='$this->identidade' OR usuario='$usuario'");
-            $linha = $duplicidade->fetch(PDO::FETCH_ASSOC);
-            if($linha){
+            $duplicidade_senai = $corn->query("SELECT adm FROM usuario WHERE adm ='$this->identidade' ");
+            $duplicidade_aluno = $corn->query("SELECT usuario FROM aluno WHERE usuario ='$this->identidade' ");
+            $duplicidade_empresa = $corn->query("SELECT usuario FROM empresa WHERE usuario ='$this->identidade' ");
+            if(($duplicidade_senai->fetch(PDO::FETCH_ASSOC)) || ($duplicidade_aluno->fetch(PDO::FETCH_ASSOC)) || ($duplicidade_empresa->fetch(PDO::FETCH_ASSOC))){
                 return false;
             }else{
                 $sql= "INSERT INTO aluno(matricula,nome,telefone,usuario,senha,status_aluno)VALUES(:matricula,:nome,:telefone,:usuario,:senha,:status_aluno)";
