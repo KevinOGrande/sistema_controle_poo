@@ -69,17 +69,25 @@ class Usuario{
         try{
             $corn = new PDO("mysql:host={$this->host};dbname={$this->dbname}",$this->user,$this->pass);
             $corn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-            $sql = "INSERT INTO usuario(nome,adm,senha)VALUES(:nome,:usuario,:senha)";
-            $cad = $corn->prepare($sql);
-            $cad->bindValue(":nome",$nome);
-            $cad->bindValue(":usuario",$this->usuario);
-            $cad->bindValue(":senha",$this->senha);
-            if($cad->execute()){
-                return true;
+            $duplicidade_senai = $corn->query("SELECT adm FROM usuario WHERE adm ='$this->usuario' ");
+            $duplicidade_aluno = $corn->query("SELECT usuario FROM aluno WHERE usuario ='$this->usuario' ");
+            $duplicidade_empresa = $corn->query("SELECT usuario FROM empresa WHERE usuario ='$this->usuario' ");
+            if(($duplicidade_senai->fetch(PDO::FETCH_ASSOC)) || ($duplicidade_aluno->fetch(PDO::FETCH_ASSOC)) || ($duplicidade_empresa->fetch(PDO::FETCH_ASSOC))){
+                return false;
+            }else{
+                $sql = "INSERT INTO usuario(nome,adm,senha)VALUES(:nome,:usuario,:senha)";
+                $cad = $corn->prepare($sql);
+                $cad->bindValue(":nome",$nome);
+                $cad->bindValue(":usuario",$this->usuario);
+                $cad->bindValue(":senha",$this->senha);
+                if($cad->execute()){
+                    return true;
+                }
+                else{
+                    echo "erro";
+                }
             }
-            else{
-                echo "erro";
-            }
+            
         }catch(PDOException $e){
             echo "tem erro:".$e;
         }
