@@ -10,13 +10,20 @@ if(isset($_SESSION['login_aluno']) && $_SESSION['login_aluno'] == true){
         <title>Document</title>
     </head>
     <body>
-        <a href="solicitacao_documento.php">Solicitação de documentos</a>
-        <a href="solicitacao_pendente.php">Solicitações Pendentes</a>
-        <a href="falta.php">Envio de Faltas</a>
+        <form action="falta.php" method="post" enctype="multipart/form-data">
+            <input type="file" name="falta" id="falta">
+            <input type="submit" value="enviar">
+        </form>
     </body>
     </html>
-
     <?php
+    if(isset($_FILES['falta'])){
+        require_once "arquivo.php";
+        $falta = new Arquivo($_SESSION['matricula']);
+        if($falta->EnvioFalta($_FILES['falta'])){
+            echo "falta enviada";
+        }
+    }
 }else{
     /* Caso a sessão não for iniciada ou o parametro de sessão estiver incorreto, o usuario sera redirecionado para a pagina de login */
     header("location:login.php");
