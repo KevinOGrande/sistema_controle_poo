@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 02/05/2024 às 16:09
--- Versão do servidor: 10.4.28-MariaDB
--- Versão do PHP: 8.2.4
+-- Tempo de geração: 12/05/2024 às 04:58
+-- Versão do servidor: 10.4.32-MariaDB
+-- Versão do PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -41,7 +41,7 @@ CREATE TABLE `aluno` (
 --
 
 INSERT INTO `aluno` (`matricula`, `nome`, `usuario`, `senha`, `status_aluno`, `telefone`) VALUES
-('456453456', 'Baiano', 'baianotech', '1234', 'aluno', '42342365');
+('6786876', 'Vitin', 'vtn7', '1234', 'aluno', '983445');
 
 -- --------------------------------------------------------
 
@@ -57,12 +57,26 @@ CREATE TABLE `empresa` (
   `senha` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+-- --------------------------------------------------------
+
 --
--- Despejando dados para a tabela `empresa`
+-- Estrutura para tabela `falta`
 --
 
-INSERT INTO `empresa` (`cnpj`, `telefone`, `nome_empresa`, `usuario`, `senha`) VALUES
-('76543455', '345313243', 'baianotech', 'baiano', '1234');
+CREATE TABLE `falta` (
+  `data_envio` char(10) NOT NULL,
+  `observacao` varchar(11) DEFAULT NULL,
+  `justificativa` varchar(40) DEFAULT NULL,
+  `matricula` char(10) NOT NULL,
+  `id_falta` int(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `falta`
+--
+
+INSERT INTO `falta` (`data_envio`, `observacao`, `justificativa`, `matricula`, `id_falta`) VALUES
+('12-05-2024', 'estava com ', '1 dia ou mais', '6786876', 2);
 
 -- --------------------------------------------------------
 
@@ -71,9 +85,9 @@ INSERT INTO `empresa` (`cnpj`, `telefone`, `nome_empresa`, `usuario`, `senha`) V
 --
 
 CREATE TABLE `solicitacao` (
-  `id` int(8) NOT NULL primary key auto_increment,
+  `id` int(8) NOT NULL,
   `matricula` char(10) DEFAULT NULL,
-  `pedido` varchar(50) DEFAULT NULL,
+  `pedido` varchar(20) DEFAULT NULL,
   `status_pedido` varchar(20) DEFAULT NULL,
   `descricao` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -83,7 +97,7 @@ CREATE TABLE `solicitacao` (
 --
 
 INSERT INTO `solicitacao` (`id`, `matricula`, `pedido`, `status_pedido`, `descricao`) VALUES
-(0, '6576575675', 'carta para estagio o', 'Em Analise', 'gostaria de receber ate quarta');
+(1, '6786876', 'carta para estagio o', 'Pagamento Pendente', 'para o meu estagio');
 
 -- --------------------------------------------------------
 
@@ -103,8 +117,7 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`id_user`, `senha`, `nome`, `adm`) VALUES
-(6, '1234', 'Kevin', 'kevin@gmail.com'),
-(7, '1234', 'Vitin', 'vitin@gmail.com');
+(6, '1234', 'Kevin', 'kevin@gmail.com');
 
 --
 -- Índices para tabelas despejadas
@@ -123,20 +136,38 @@ ALTER TABLE `empresa`
   ADD PRIMARY KEY (`cnpj`);
 
 --
+-- Índices de tabela `falta`
+--
+ALTER TABLE `falta`
+  ADD PRIMARY KEY (`id_falta`);
+
+--
+-- Índices de tabela `solicitacao`
+--
+ALTER TABLE `solicitacao`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Índices de tabela `usuario`
 --
 ALTER TABLE `usuario`
-  ADD PRIMARY KEY (`id_user`);
+  ADD PRIMARY KEY (`adm`);
 
 --
 -- AUTO_INCREMENT para tabelas despejadas
 --
 
 --
--- AUTO_INCREMENT de tabela `usuario`
+-- AUTO_INCREMENT de tabela `falta`
 --
-ALTER TABLE `usuario`
-  MODIFY `id_user` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+ALTER TABLE `falta`
+  MODIFY `id_falta` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de tabela `solicitacao`
+--
+ALTER TABLE `solicitacao`
+  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
