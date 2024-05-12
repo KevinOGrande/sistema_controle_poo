@@ -34,7 +34,7 @@ class Arquivo{
     public function ExcluirArquivoAlunoSolicitacao($nome_arquivo){
         unlink("C:/xampp/htdocs/estudo/sistema_controle_poo/diretorio_empresa/".$this->identidade."/solicitacao/".$nome_arquivo);
     }
-    public function ExcluirArquivoAlunoAlunoFalta($nome_arquivo){
+    public function ExcluirArquivoAlunoFalta($nome_arquivo){
         unlink("C:/xampp/htdocs/estudo/sistema_controle_poo/diretorio_empresa/".$this->identidade."/falta/".$nome_arquivo);
     }
     public function AddBoleto($upload,$id){

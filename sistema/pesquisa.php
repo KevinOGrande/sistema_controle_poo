@@ -70,7 +70,7 @@ if(isset($_SESSION['login_senai']) && $_SESSION['login_senai'] === true){
                     </form>
                     <form action="lista_arquivo.php" method="post">
                         <input type="hidden" name="diretorio" value="<?php echo $resutado['matricula'];?>">
-                        <input type="submit" value="ver">
+                        <input type="submit" value="Lista de Faltas">
                     </form>
                     <form action="lista_solicitacao_aluno.php" method="post">
                         <input type="hidden" name="matricula" value="<?php echo $resutado['matricula']?>">

@@ -72,6 +72,22 @@ class Solicitacao{
             $corn=null;
         }
     }
+    public function Falta($data,$justificativa,$observacao){
+        try{
+            $corn = new PDO("mysql:host={$this->host};dbname={$this->dbname}",$this->user,$this->pass);
+            $corn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+            $sql= "INSERT INTO falta(matricula,data_envio,justificativa,observacao)VALUES('$this->identidade','$data','$justificativa',:observacao)";
+            $add = $corn->prepare($sql);
+            $add->bindValue(":observacao",$observacao);
+            if($add->execute()){
+                return true;
+            }
+        }catch(PDOException $e){
+            echo "tem erro:".$e;
+        }finally{
+            $corn=NULL;
+        }
+    }
 }
 
 ?>
