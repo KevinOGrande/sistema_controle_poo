@@ -43,8 +43,8 @@ class Arquivo{
             return true;
         }
     }
-    public function EnvioFalta($upload){
-        $caminho = "C:/xampp/htdocs/estudo/sistema_controle_poo/diretorio_aluno/".$this->identidade."/falta/Justificativa_".date("d-m-Y").".pdf";
+    public function EnvioFalta($upload,$id){
+        $caminho = "C:/xampp/htdocs/estudo/sistema_controle_poo/diretorio_aluno/".$this->identidade."/falta/Justificativa_".$id."_".date("d-m-Y").".pdf";
         if(move_uploaded_file($upload['tmp_name'],$caminho)){
             return true;
         }

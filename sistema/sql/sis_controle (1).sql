@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 12/05/2024 às 04:58
+-- Tempo de geração: 13/05/2024 às 03:31
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -76,7 +76,7 @@ CREATE TABLE `falta` (
 --
 
 INSERT INTO `falta` (`data_envio`, `observacao`, `justificativa`, `matricula`, `id_falta`) VALUES
-('12-05-2024', 'estava com ', '1 dia ou mais', '6786876', 2);
+('13-05-2024', 'estava com ', '1 dia ou mais', '6786876', 7870);
 
 -- --------------------------------------------------------
 
@@ -156,12 +156,6 @@ ALTER TABLE `usuario`
 --
 -- AUTO_INCREMENT para tabelas despejadas
 --
-
---
--- AUTO_INCREMENT de tabela `falta`
---
-ALTER TABLE `falta`
-  MODIFY `id_falta` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de tabela `solicitacao`
