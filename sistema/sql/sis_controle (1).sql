@@ -68,7 +68,7 @@ CREATE TABLE `falta` (
   `observacao` varchar(11) DEFAULT NULL,
   `justificativa` varchar(40) DEFAULT NULL,
   `matricula` char(10) NOT NULL,
-  `id_falta` int(50) NOT NULL
+  `id_falta` int(50) NOT NULL primary key
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --

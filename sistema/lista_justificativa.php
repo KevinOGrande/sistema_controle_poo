@@ -1,8 +1,8 @@
 <?php
 session_start();
 if(isset($_SESSION['login_senai']) && $_SESSION['login_senai'] === true){
-    require "empresa.php";
-    $lista = new Solicitacao(" ");
+    require "solicitacao.php";
+    $lista = new Solicitacao($_POST['matricula']);
     $resultado = $lista->ListaFalta();
     ?>
     <!DOCTYPE html>

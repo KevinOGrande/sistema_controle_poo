@@ -79,15 +79,17 @@ class Solicitacao{
             $id_random = rand(0,10000);
             $verificacao_id = $corn->query("SELECT id_falta FROM falta WHERE id_falta = '$id_random'");
             if($verificacao_id->fetch(PDO::FETCH_ASSOC)){
-                return false;
-            }else{
-                $sql= "INSERT INTO falta(id_falta,matricula,data_envio,justificativa,observacao)VALUES('$id_random','$this->identidade','$data','$justificativa',:observacao)";
-                $add = $corn->prepare($sql);
-                $add->bindValue(":observacao",$observacao);
-                if($add->execute()){
-                    $convercao = strval($id_random);
-                    return $convercao;
-                }
+                do{
+                    $id_random = rand(0,10000);
+                    $verificacao_id = $corn->query("SELECT id_falta FROM falta WHERE id_falta = '$id_random'");
+                }while($verificacao_id->fetch(PDO::FETCH_ASSOC));
+            }
+            $sql= "INSERT INTO falta(id_falta,matricula,data_envio,justificativa,observacao)VALUES('$id_random','$this->identidade','$data','$justificativa',:observacao)";
+            $add = $corn->prepare($sql);
+            $add->bindValue(":observacao",$observacao);
+            if($add->execute()){
+                $convercao = strval($id_random);
+                return $convercao;
             }
         }catch(PDOException $e){
             echo "tem erro:".$e;

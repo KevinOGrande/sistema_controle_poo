@@ -76,7 +76,7 @@ if(isset($_SESSION['login_senai']) && $_SESSION['login_senai'] === true){
                         <input type="hidden" name="matricula" value="<?php echo $resutado['matricula']?>">
                         <input type="submit" value="lista solicitação">
                     </form>
-                    <form action="" method="post">
+                    <form action="lista_justificativa.php" method="post">
                         <input type="hidden" name="matricula" value="<?php echo $resutado['matricula']?>">
                         <input type="submit" value="Justificativas de faltas">
                     </form>
