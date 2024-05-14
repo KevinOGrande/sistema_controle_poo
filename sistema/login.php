@@ -69,6 +69,7 @@ if(isset($_POST['user']) && isset($_POST['senha'])){
     $login = new Usuario($_POST['user'],$_POST['senha']);
     if($resultado = $login->UserSenai()){
         session_start();
+        $_SESSION['nome_usuario'] = $resultado['nome'];
         $_SESSION['login_senai'] = true;
         header("location:index.php");
     }
