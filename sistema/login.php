@@ -31,8 +31,11 @@ session_destroy();
             .fs-1{
                 text-align: center;
             }
-            #cad{
-                align-items: center;
+            .cad{
+                margin-top:1%;
+            }
+            .container{
+                margin-top: 6%;
             }
         </style>
         <title>Document</title>
@@ -43,24 +46,27 @@ session_destroy();
                 <img src="image/senai_logo1.png" alt="">
             </nav>
         </header>
-        <p class="fs-1">Login</p>
-        <form action="login.php" method="post" class="formulario">
-            <div class="mb-3">
-                <label class="form-label">Usuario:</label>
-                <input type="text" name="user" id="usuario" required class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-            </div>
-            <div class="mb-3">
-                <label class="form-label">Senha:</label>
-                <input type="password" name="senha" id="senha" required class="form-control" id="exampleInputPassword1">
-            </div>
-            <div class="botao">
-                <input type="submit" value="Entrar" class="btn btn-primary">
-            </div>
-        </form>
-        <div>
-            <a href="cadaluno.php" id="cad">Cadastro de aluno</a>
+        <div class="container">
+            <p class="fs-1">Login</p>
+            <form action="login.php" method="post" class="formulario">
+                <div class="mb-3">
+                    <label class="form-label">Usuario:</label>
+                    <input type="text" name="user" id="usuario" required class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Senha:</label>
+                    <input type="password" name="senha" id="senha" required class="form-control" id="exampleInputPassword1">
+                </div>
+                <div class="botao">
+                    <input type="submit" value="Entrar" class="btn btn-primary">
+                </div>
+            </form>
+            <center>
+                <div class="cad">
+                    <a href="cadaluno.php">Cadastro de aluno</a>
+                </div>
+            </center>
         </div>
-        
     </body>
     </html>
 <?php

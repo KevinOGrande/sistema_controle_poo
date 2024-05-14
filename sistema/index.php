@@ -18,7 +18,9 @@ if(isset($_SESSION['login_senai']) && $_SESSION['login_senai'] === true){
                 display: flex;
             }
             .fs-1{
+                margin-top:3%;
                 text-align: center;
+                justify-content: center;
             }
             .form-control{
                 color: #DCDCDC;
@@ -35,6 +37,15 @@ if(isset($_SESSION['login_senai']) && $_SESSION['login_senai'] === true){
             .botao{
                 margin-left: 1%;
             }
+            #botao{
+                width: 140%;
+                
+            }
+            #botao_grupo{
+                align-items: center;
+                justify-content: center;
+                margin-top:2%;
+            }
         </style>
     </head>
     <body>
@@ -50,10 +61,13 @@ if(isset($_SESSION['login_senai']) && $_SESSION['login_senai'] === true){
             </form>
         </header>
         <p class="fs-1">Seja Bem-Vindo <?php echo $_SESSION['nome_usuario']?>!</p>
-        <a href="cad_usuario.php">Cadastro usuario</a>
-        <a href="cad_empresa.php">Cadastro empresa</a>
-        <a href="lista_empresa.php">Lista Empresa</a>
-        <a href="lista_solicitacao.php">lista solicitacao Aluno</a>
+        <div class="d-grid gap-2 col-6 mx-auto" id="botao_grupo">
+            <a href="cad_usuario.php" class="btn btn-primary" id="botao">Cadastro usuario Senai</a>
+            <a href="cad_empresa.php" class="btn btn-primary" id="botao">Cadastro empresa</a>
+            <a href="lista_empresa.php" class="btn btn-primary" id="botao">Lista Empresa</a>
+            <a href="lista_solicitacao.php" class="btn btn-primary" id="botao">lista solicitacao Aluno</a>
+        </div>
+        
         
     </body>
     </html>
