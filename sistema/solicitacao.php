@@ -1,5 +1,4 @@
 <?php
-
 class Solicitacao{
     protected $host = "localhost";
     protected $dbname = "sis_controle";
