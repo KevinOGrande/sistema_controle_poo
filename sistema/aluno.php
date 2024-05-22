@@ -5,11 +5,19 @@ class Aluno{
     protected $user = "kevin";
     protected $pass = "1234";
     protected $identidade = null;
+    private $nome = null;
+    private $usuario = null;
+    private $senha = null;
+    private $telefone = null;
+    private $status = null;
 
     public function __construct($identidade){
         $this->identidade = $identidade;
     }
-    public function CadAluno($nome,$usuario,$senha,$telefone,$status){
+    public function __set($atributo,$valor){
+        $this->$atributo = $valor;
+    }
+    public function CadAluno(){
         try{
             $corn = new PDO("mysql:host={$this->host};dbname={$this->dbname}",$this->user,$this->pass);
             $corn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
@@ -22,11 +30,11 @@ class Aluno{
                 $sql= "INSERT INTO aluno(matricula,nome,telefone,usuario,senha,status_aluno)VALUES(:matricula,:nome,:telefone,:usuario,:senha,:status_aluno)";
                 $cad = $corn->prepare($sql);
                 $cad->bindValue(":matricula",$this->identidade);
-                $cad->bindValue(":nome",$nome);
-                $cad->bindValue(":telefone",$telefone);
-                $cad->bindValue(":usuario",$usuario);
-                $cad->bindValue(":senha",$senha);
-                $cad->bindValue(":status_aluno",$status);
+                $cad->bindValue(":nome",$this->nome);
+                $cad->bindValue(":telefone",$this->telefone);
+                $cad->bindValue(":usuario",$this->usuario);
+                $cad->bindValue(":senha",$this->senha);
+                $cad->bindValue(":status_aluno",$this->status);
                 if($cad->execute()){
                     $caminho= "C:/xampp/htdocs/estudo/sistema_controle_poo/diretorio_aluno/".$this->identidade;
                     if(mkdir($caminho,0777)){
@@ -110,10 +118,10 @@ class Aluno{
             $corn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
             $sql = "UPDATE aluno SET telefone= :telefone,usuario= :usuario,senha= :senha, status_aluno= :status_aluno WHERE matricula='$this->identidade'";
             $atualiza = $corn->prepare($sql);
-            $atualiza->bindValue(":telefone",$telefone);
-            $atualiza->bindValue(":usuario",$usuario);
-            $atualiza->bindValue(":senha",$senha);
-            $atualiza->bindValue(":status_aluno",$status);
+            $atualiza->bindValue(":telefone",$this->telefone);
+            $atualiza->bindValue(":usuario",$this->usuario);
+            $atualiza->bindValue(":senha",$this->senha);
+            $atualiza->bindValue(":status_aluno",$this->status);
             if($atualiza->execute()){
                 return true;
             }
