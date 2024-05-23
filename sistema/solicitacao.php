@@ -74,44 +74,6 @@ class Solicitacao{
             $corn=null;
         }
     }
-    public function Falta($data,$justificativa,$observacao){
-        try{
-            $corn = new PDO("mysql:host={$this->host};dbname={$this->dbname}",$this->user,$this->pass);
-            $corn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-            $id_random = rand(0,10000);
-            $verificacao_id = $corn->query("SELECT id_falta FROM falta WHERE id_falta = '$id_random'");
-            if($verificacao_id->fetch(PDO::FETCH_ASSOC)){
-                do{
-                    $id_random = rand(0,10000);
-                    $verificacao_id = $corn->query("SELECT id_falta FROM falta WHERE id_falta = '$id_random'");
-                }while($verificacao_id->fetch(PDO::FETCH_ASSOC));
-            }
-            $sql= "INSERT INTO falta(id_falta,matricula,data_envio,justificativa,observacao)VALUES('$id_random','$this->identidade','$data','$justificativa',:observacao)";
-            $add = $corn->prepare($sql);
-            $add->bindValue(":observacao",$observacao);
-            if($add->execute()){
-                $convercao = strval($id_random);
-                return $convercao;
-            }
-        }catch(PDOException $e){
-            echo "tem erro:".$e;
-        }finally{
-            $corn=NULL;
-        }
-    }
-    public function ListaFalta(){
-        try{
-            $corn = new PDO("mysql:host={$this->host};dbname={$this->dbname}",$this->user,$this->pass);
-            $corn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-            if($lista=$corn->query("SELECT * FROM falta WHERE matricula='$this->identidade'")){
-                return $lista;
-            }
-        }catch(PDOException $e){
-            echo "tem erro:".$e;
-        }finally{
-            $corn=null;
-        }
-    }
 }
 
 ?>
