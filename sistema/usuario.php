@@ -6,6 +6,7 @@ class Usuario{
     protected $pass = "1234";
     private $usuario = null;
     private $senha = null;
+    private $nome = null;
 
     public function __construct($usuario,$senha){
         $this->usuario = $usuario;
@@ -65,7 +66,7 @@ class Usuario{
             echo "tem erro:".$e;
         }
     }
-    public function CadastroUsuario($nome){
+    public function CadastroUsuario(){
         try{
             $corn = new PDO("mysql:host={$this->host};dbname={$this->dbname}",$this->user,$this->pass);
             $corn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
@@ -77,7 +78,7 @@ class Usuario{
             }else{
                 $sql = "INSERT INTO usuario(nome,adm,senha)VALUES(:nome,:usuario,:senha)";
                 $cad = $corn->prepare($sql);
-                $cad->bindValue(":nome",$nome);
+                $cad->bindValue(":nome",$this->nome);
                 $cad->bindValue(":usuario",$this->usuario);
                 $cad->bindValue(":senha",$this->senha);
                 if($cad->execute()){

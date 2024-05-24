@@ -4,9 +4,11 @@ class Empresa{
     protected $dbname = "sis_controle";
     protected $user = "kevin";
     protected $pass = "1234";
-    protected $tabela = "empresa";
     protected $identidade = null;
-    protected $diretorio = "diretorio_empresa";
+    private $nome = null;
+    private $usuario = null;
+    private $senha = null;
+    private $telefone = null;
     
 
     public function __construct($identidade){
@@ -16,13 +18,13 @@ class Empresa{
         try{
             $corn = new PDO("mysql:host={$this->host};dbname={$this->dbname}",$this->user,$this->pass);
             $corn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-            $duplicidade_senai = $corn->query("SELECT adm FROM usuario WHERE adm ='$this->identidade' ");
-            $duplicidade_aluno = $corn->query("SELECT usuario FROM aluno WHERE usuario ='$this->identidade' ");
-            $duplicidade_empresa = $corn->query("SELECT usuario FROM empresa WHERE usuario ='$this->identidade' ");
+            $duplicidade_senai = $corn->query("SELECT adm FROM usuario WHERE adm ='$this->usuario'");
+            $duplicidade_aluno = $corn->query("SELECT usuario FROM aluno WHERE usuario ='$this->usuario'");
+            $duplicidade_empresa = $corn->query("SELECT usuario FROM empresa WHERE usuario ='$this->usuario'");
             if(($duplicidade_senai->fetch(PDO::FETCH_ASSOC)) || ($duplicidade_aluno->fetch(PDO::FETCH_ASSOC)) || ($duplicidade_empresa->fetch(PDO::FETCH_ASSOC))){
                 return false;
             }else{
-                $sql= "INSERT INTO $this->tabela(cnpj,nome_empresa,telefone,usuario,senha)VALUES(:cnpj,:nome_empresa,:telefone,:usuario,:senha)";
+                $sql= "INSERT INTO empresa(cnpj,nome_empresa,telefone,usuario,senha)VALUES(:cnpj,:nome_empresa,:telefone,:usuario,:senha)";
                 $cad = $corn->prepare($sql);
                 $cad->bindValue(":cnpj",$this->identidade);
                 $cad->bindValue(":nome_empresa",$nome);
@@ -30,7 +32,7 @@ class Empresa{
                 $cad->bindValue(":usuario",$usuario);
                 $cad->bindValue(":senha",$senha);
                 if($cad->execute()){
-                    $caminho= "C:/xampp/htdocs/estudo/sistema_controle_poo/".$this->diretorio."/".$this->identidade;
+                    $caminho= "C:/xampp/htdocs/estudo/sistema_controle_poo/diretorio_empresa/".$this->identidade;
                     if(mkdir($caminho,0777)){
                         return true;
                     }
@@ -46,7 +48,7 @@ class Empresa{
         try{
             $corn = new PDO("mysql:host={$this->host};dbname={$this->dbname}",$this->user,$this->pass);
             $corn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-            $sql= "SELECT * FROM $this->tabela WHERE cnpj= :cnpj";
+            $sql= "SELECT * FROM empresa WHERE cnpj= :cnpj";
             $requisicao_empresa = $corn->prepare($sql);
             $requisicao_empresa->bindValue(":cnpj",$this->identidade);
             $requisicao_empresa->execute();
@@ -71,14 +73,14 @@ class Empresa{
             $permissao->execute();
             $linha_permissao = $permissao->fetch(PDO::FETCH_ASSOC);
             if($linha_permissao){
-                if($corn->query("DELETE FROM $this->tabela WHERE cnpj='$this->identidade'")){
-                    $arquivo = dir("C:/xampp/htdocs/estudo/sistema_controle_poo/".$this->diretorio."/".$this->identidade);
+                if($corn->query("DELETE FROM empresa WHERE cnpj='$this->identidade'")){
+                    $arquivo = dir("C:/xampp/htdocs/estudo/sistema_controle_poo/diretorio_empresa/".$this->identidade);
                     while(($nome_arquivo = $arquivo->read())!== false){
                         if($nome_arquivo!=="." && $nome_arquivo!==".."){
-                            unlink("C:/xampp/htdocs/estudo/sistema_controle_poo/".$this->diretorio."/".$this->identidade."/".$nome_arquivo);
+                            unlink("C:/xampp/htdocs/estudo/sistema_controle_poo/diretorio_empresa/".$this->identidade."/".$nome_arquivo);
                         }   
                     }
-                    if(rmdir("C:/xampp/htdocs/estudo/sistema_controle_poo/".$this->diretorio."/".$this->identidade)){
+                    if(rmdir("C:/xampp/htdocs/estudo/sistema_controle_poo/diretorio_empresa/".$this->identidade)){
                         return "excluido";
                     }
                 }
@@ -93,7 +95,7 @@ class Empresa{
         try{
             $corn = new PDO("mysql:host={$this->host};dbname={$this->dbname}",$this->user,$this->pass);
             $corn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-            $sql = "UPDATE $this->tabela SET telefone= :telefone,usuario= :usuario,senha= :senha WHERE cnpj='$this->identidade'";
+            $sql = "UPDATE empresa SET telefone= :telefone,usuario= :usuario,senha= :senha WHERE cnpj='$this->identidade'";
             $atualiza = $corn->prepare($sql);
             $atualiza->bindValue(":telefone",$telefone);
             $atualiza->bindValue(":usuario",$usuario);
@@ -111,7 +113,7 @@ class Empresa{
         try{
             $corn = new PDO("mysql:host={$this->host};dbname={$this->dbname}",$this->user,$this->pass);
             $corn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-            if($lista=$corn->query("SELECT * FROM $this->tabela")){
+            if($lista=$corn->query("SELECT * FROM empresa")){
                 return $lista;
             }
         }catch(PDOException $e){
