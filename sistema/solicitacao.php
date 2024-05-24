@@ -12,6 +12,9 @@ class Solicitacao{
     public function __construct($identidade){
         $this->identidade = $identidade;
     }
+    public function __set($atributo,$valor){
+        $this->$atributo = $valor;
+    }
     public function AddSolicitacao(){
         try{
             $corn = new PDO("mysql:host={$this->host};dbname={$this->dbname}",$this->user,$this->pass);

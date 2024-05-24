@@ -31,9 +31,12 @@ if(isset($_SESSION['login_aluno']) && $_SESSION['login_aluno'] == true){
     </html>
     <?php
     if(isset($_FILES['falta'])){
-        require_once "solicitacao.php";
-        $falta = new Solicitacao($_SESSION['matricula']);
-        if($id = $falta->Falta(date("d-m-Y"),$_POST['justificativa'],$_POST['observacao'])){
+        require_once "falta.php";
+        $falta = new Falta($_SESSION['matricula']);
+        $falta->__set("data_envio",date("d-m-Y"));
+        $falta->__set("justificativa",$_POST['justificativa']);
+        $falta->__set("observacao",$_POST['observacao']);
+        if($id = $falta->EnvioFalta()){
             require_once "arquivo.php";
             $justificativa = new Arquivo($_SESSION['matricula']);
             if($justificativa->EnvioFalta($_FILES['falta'],$id)){

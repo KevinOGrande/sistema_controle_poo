@@ -41,7 +41,10 @@ if(isset($_SESSION['login_aluno']) && $_SESSION['login_aluno'] == true){
     if(isset($_GET['pedido'])){
         require_once "solicitacao.php";
         $documento = new Solicitacao($_SESSION['matricula']);
-        $envio = $documento->AddSolicitacao($_GET['pedido'],"Em Analise",$_GET['observacao']);
+        $documento->__set("pedido",$_GET['pedido']);
+        $documento->__set("status","Em Analise");
+        $documento->__set("descricao",$_GET['observacao']);
+        $envio = $documento->AddSolicitacao();
         if($envio){
             echo "solicitação enviada";
         }

@@ -80,7 +80,12 @@
 if(isset($_GET['matricula'])){
     require_once "aluno.php";
     $cadastro = new Aluno($_GET['matricula']);
-    if($cadastro->CadAluno($_GET['nome'],$_GET['usuario'],$_GET['senha'],$_GET['telefone'],$_GET['status'])){
+    $cadastro->__set("nome",$_GET['nome']);
+    $cadastro->__set("usuario",$_GET['usuario']);
+    $cadastro->__set("senha",$_GET['senha']);
+    $cadastro->__set("telefone",$_GET['telefone']);
+    $cadastro->__set("status",$_GET['status']);
+    if($cadastro->CadAluno()){
         echo "Cadastrado";
     }
     

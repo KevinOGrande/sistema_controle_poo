@@ -112,7 +112,7 @@ class Aluno{
             $corn=NULL;
         }
     }
-    public function AtualizarAluno($usuario,$senha,$telefone,$status){
+    public function AtualizarAluno(){
         try{
             $corn = new PDO("mysql:host={$this->host};dbname={$this->dbname}",$this->user,$this->pass);
             $corn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
