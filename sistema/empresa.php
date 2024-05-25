@@ -10,11 +10,13 @@ class Empresa{
     private $senha = null;
     private $telefone = null;
     
-
     public function __construct($identidade){
         $this->identidade = $identidade;
     }
-    public function CadEmpresa($nome,$usuario,$senha,$telefone){
+    public function __set($atributo, $valor){
+        $this->$atributo = $valor;
+    }
+    public function CadEmpresa(){
         try{
             $corn = new PDO("mysql:host={$this->host};dbname={$this->dbname}",$this->user,$this->pass);
             $corn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
@@ -27,10 +29,10 @@ class Empresa{
                 $sql= "INSERT INTO empresa(cnpj,nome_empresa,telefone,usuario,senha)VALUES(:cnpj,:nome_empresa,:telefone,:usuario,:senha)";
                 $cad = $corn->prepare($sql);
                 $cad->bindValue(":cnpj",$this->identidade);
-                $cad->bindValue(":nome_empresa",$nome);
-                $cad->bindValue(":telefone",$telefone);
-                $cad->bindValue(":usuario",$usuario);
-                $cad->bindValue(":senha",$senha);
+                $cad->bindValue(":nome_empresa",$this->nome);
+                $cad->bindValue(":telefone",$this->telefone);
+                $cad->bindValue(":usuario",$this->usuario);
+                $cad->bindValue(":senha",$this->senha);
                 if($cad->execute()){
                     $caminho= "C:/xampp/htdocs/estudo/sistema_controle_poo/diretorio_empresa/".$this->identidade;
                     if(mkdir($caminho,0777)){
@@ -91,15 +93,15 @@ class Empresa{
             $corn=NULL;
         }
     }
-    public function AtualizaEmpresa($usuario,$senha,$telefone){
+    public function AtualizaEmpresa(){
         try{
             $corn = new PDO("mysql:host={$this->host};dbname={$this->dbname}",$this->user,$this->pass);
             $corn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
             $sql = "UPDATE empresa SET telefone= :telefone,usuario= :usuario,senha= :senha WHERE cnpj='$this->identidade'";
             $atualiza = $corn->prepare($sql);
-            $atualiza->bindValue(":telefone",$telefone);
-            $atualiza->bindValue(":usuario",$usuario);
-            $atualiza->bindValue(":senha",$senha);
+            $atualiza->bindValue(":telefone",$this->telefone);
+            $atualiza->bindValue(":usuario",$this->usuario);
+            $atualiza->bindValue(":senha",$this->senha);
             if($atualiza->execute()){
                 return true;
             }

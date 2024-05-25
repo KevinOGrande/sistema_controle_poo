@@ -1,6 +1,6 @@
 <?php
 session_start();
-if(isset($_SESSION['login_senai']) && $_SESSION['login_senai'] === true){
+if((isset($_SESSION['login_senai']) && $_SESSION['login_senai'] === true)&&(isset($_POST['aluno'])||isset($_POST['empresa'])||isset($_POST['matricula'])||isset($_POST['cnpj']))){
     ?>
     <!DOCTYPE html>
     <html lang="en">
@@ -11,7 +11,17 @@ if(isset($_SESSION['login_senai']) && $_SESSION['login_senai'] === true){
     </head>
     <body>
         <form action="excluir.php" method="post">
-            <input type="hidden" name="identidade" value="<?php echo $_POST['identidade'];?>">
+            <?php
+            if(isset($_POST['aluno'])){
+                ?>
+                <input type="hidden" name="matricula" value="<?php echo $_POST['aluno'];?>">
+                <?php
+            }elseif(isset($_POST['empresa'])){
+                ?>
+                <input type="hidden" name="cnpj" value="<?php echo $_POST['empresa'];?>">
+                <?php
+            }
+            ?>
             <input type="text" name="usuario" id="usuario" require>            
             <input type="password" name="senha" id="senha">
             <input type="submit" value="excluir">
@@ -20,15 +30,17 @@ if(isset($_SESSION['login_senai']) && $_SESSION['login_senai'] === true){
     </html>
     <?php
     if(isset($_POST['usuario'])){
-        require_once "empresa.php";
-        $excluir = new Empresa($_POST['identidade']);
-        if($resultado = $excluir->ExcluirEmpresa($_POST['usuario'],$_POST['senha'])){
-            echo $resultado;
-        }else{
+        if(isset($_POST['cnpj'])){
+            require_once "empresa.php";
+            $excluir = new Empresa($_POST['cnpj']);
+            if($resultado = $excluir->ExcluirEmpresa($_POST['usuario'],$_POST['senha'])){
+                header("location:index.php");
+            }
+        }elseif(isset($_POST['matricula'])){
             require_once "aluno.php";
-            $excluir = new Aluno($_POST['identidade']);
+            $excluir = new Aluno($_POST['matricula']);
             if($resultado = $excluir->ExcluirAluno($_POST['usuario'],$_POST['senha'])){
-                echo $resultado;
+                header("location:index.php");
             }
         }
     }

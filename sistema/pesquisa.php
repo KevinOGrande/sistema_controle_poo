@@ -36,7 +36,7 @@ if(isset($_SESSION['login_senai']) && $_SESSION['login_senai'] === true){
                 <input type="submit" value="enviar">
             </form>
             <form action="excluir.php" method="post">
-                <input type="hidden" name="identidade" value="<?php echo $_GET['pesquisa'];?>">
+                <input type="hidden" name="empresa" value="<?php echo $_GET['pesquisa'];?>">
                 <input type="submit" value="excluir">
             </form>
             <form action="atualiza.php" method="post">
@@ -107,8 +107,8 @@ if(isset($_SESSION['login_senai']) && $_SESSION['login_senai'] === true){
                         </tbody>
                     </table>
                     <div class="botoes">
-                        <form action="excluir_aluno.php" method="post" class="formulario">
-                            <input type="hidden" name="identidade" value="<?php echo $_GET['pesquisa'];?>">
+                        <form action="excluir.php" method="post" class="formulario">
+                            <input type="hidden" name="aluno" value="<?php echo $_GET['pesquisa'];?>">
                             <input type="submit" value="excluir" class="btn btn-danger">
                         </form>
                         <form action="atualiza.php" method="post" class="formulario">

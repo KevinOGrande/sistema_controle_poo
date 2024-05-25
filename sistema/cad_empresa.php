@@ -44,7 +44,7 @@ if(isset($_SESSION['login_senai']) && $_SESSION['login_senai'] === true){
             </nav>
         </header>
         <p class="fs-1">Cadastro de Empresa</p>
-        <form action="cad_usuario.php" method="get" class="formulario">
+        <form action="cad_empresa.php" method="get" class="formulario">
             <div class="mb-3">
                 <label class="form-label">CNPJ:</label>
                 <input type="text" name="cnpj" id="cnpj" required class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
@@ -55,7 +55,7 @@ if(isset($_SESSION['login_senai']) && $_SESSION['login_senai'] === true){
             </div>
             <div class="mb-3">
                 <label class="form-label">Usuario:</label>
-                <input type="text" name="usuario" id="user" required class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                <input type="text" name="usuario" id="usuario" required class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
             </div>
             <div class="mb-3">
                 <label class="form-label">Senha:</label>
@@ -75,7 +75,13 @@ if(isset($_SESSION['login_senai']) && $_SESSION['login_senai'] === true){
     if(isset($_GET['cnpj'])){
         require_once "empresa.php";
         $cad = new Empresa($_GET['cnpj']);
-        $cad->CadEmpresa($_GET['nome'],$_GET['usuario'],$_GET['senha'],$_GET['telefone']);
+        $cad->__set("nome",$_GET['nome']);
+        $cad->__set("usuario",$_GET['usuario']);
+        $cad->__set("senha",$_GET['senha']);
+        $cad->__set("telefone",$_GET['telefone']);
+        if($cad->CadEmpresa()){
+            echo "cadastrado";
+        }
     }
     
 }else{
