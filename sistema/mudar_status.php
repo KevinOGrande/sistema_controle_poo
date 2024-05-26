@@ -3,7 +3,8 @@ session_start();
 if(isset($_SESSION['login_senai']) && $_SESSION['login_senai'] === true){
     require_once "solicitacao.php";
     $mudar = new Solicitacao($_POST['id']);
-    if($mudar->MudarStatus($_POST['status'])){
+    $mudar->__set("status",$_POST['status']);
+    if($mudar->MudarStatus()){
         echo "Status Atualizado!";
     }
 }else{

@@ -35,12 +35,19 @@ if(isset($_SESSION['login_senai']) && $_SESSION['login_senai'] === true){
             .fs-1{
                 text-align: center;
             }
+            .container{
+                margin-left: 80%;
+                margin-top: -3%;
+            }
         </style>
     </head>
     <body>
         <header>
             <nav class="navbar body-tertiary">
                 <img src="image/senai_logo1.png" alt="">
+                <div class="container">
+                    <a href="index.php" class="btn btn-secondary">Voltar</a>
+                </div>
             </nav>
         </header>
         <p class="fs-1">Cadastro de Empresa</p>

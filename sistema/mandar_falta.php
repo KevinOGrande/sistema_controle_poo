@@ -39,7 +39,8 @@ if(isset($_SESSION['login_aluno']) && $_SESSION['login_aluno'] == true){
         if($id = $falta->EnvioFalta()){
             require_once "arquivo.php";
             $justificativa = new Arquivo($_SESSION['matricula']);
-            if($justificativa->EnvioFalta($_FILES['falta'],$id)){
+            $justificativa->__set("id",$id);
+            if($justificativa->EnvioFalta($_FILES['falta'])){
                 echo "falta enviada";
             }
         }

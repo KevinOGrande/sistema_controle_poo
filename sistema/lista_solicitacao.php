@@ -32,12 +32,19 @@ if(isset($_SESSION['login_senai']) && $_SESSION['login_senai'] === true){
             th{
                 width: 10%;
             }
+            .container{
+                margin-left: 80%;
+                margin-top: -3%;
+            }
         </style>
     </head>
     <body>
         <header>
             <nav class="navbar body-tertiary">
                 <img src="image/senai_logo1.png" alt="">
+                <div class="container">
+                    <a href="index.php" class="btn btn-secondary">Voltar</a>
+                </div>
             </nav>
         </header>
         <p class="fs-1">Lista de Solicitações</p>
@@ -64,18 +71,19 @@ if(isset($_SESSION['login_senai']) && $_SESSION['login_senai'] === true){
                             <th><?php echo $linha['pedido'];?></th>
                             <th><?php echo $linha['status_pedido'];?></th>
                             <th><?php echo $linha['descricao'];?></th>
+                            <th>
+                                <form action="mudar_status.php" method="post">
+                                    <input type="hidden" name="id" value="<?php echo $linha['id']?>">
+                                    <select name="status" id="status" class="form-select">
+                                        <option value="Pronto para retirada">Pronto para Retirada</option>
+                                        <option value="Solicitacao negada">Solicitação Negada</option>
+                                    </select>
+                                    <input type="submit" value="mudar" class="btn btn-dark">
+                                </form>
+                            </th>
                             <?php
                             if($linha['pedido']!= "carta para estagio optativo" && $linha['pedido']!= "declaracao de matricula" && $linha['status_pedido'] == "Em Analise"){
                                 ?>
-                                <th>
-                                    <form action="mudar_status.php" method="post">
-                                        <input type="hidden" name="id" value="<?php echo $linha['id']?>">
-                                        <select name="status" id="status" class="form-select">
-                                            <option value="solicitacao negada">Solicitação Negada</option>
-                                        </select>
-                                        <input type="submit" value="mudar" class="btn btn-dark">
-                                    </form>
-                                </th>
                                 <th>
                                     <form action="upload.php" method="post" enctype="multipart/form-data">
                                         <input type="hidden" name="matricula" value="<?php echo $linha['matricula'];?>">
@@ -85,21 +93,9 @@ if(isset($_SESSION['login_senai']) && $_SESSION['login_senai'] === true){
                                     </form>
                                 </th>
                             <?php
-                            }elseif($linha['status_pedido']!="Solicitacao negada"){
+                            }else{
                                 ?>
-                                <th>
-                                    <form action="mudar_status.php" method="post">
-                                        <input type="hidden" name="id" value="<?php echo $linha['id']?>">
-                                        <select name="status" id="status" class="form-select">
-                                            <option value="Pronto para retirada">Pronto para Retirada</option>
-                                            <option value="Solicitacao negada">Solicitação Negada</option>
-                                        </select>
-                                        <input type="submit" value="mudar" class="btn btn-dark">
-                                    </form>
-                                </th>
-                                <th>
-
-                                </th>
+                                <th> </th>
                                 <?php
                             }
                             ?>
