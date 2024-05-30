@@ -53,7 +53,7 @@ class Usuario{
         try{
             $corn = new PDO("mysql:host={$this->host};dbname={$this->dbname}",$this->user,$this->pass);
             $corn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-            $sql = "SELECT matricula FROM aluno WHERE usuario= :usuario and senha= :senha";
+            $sql = "SELECT * FROM aluno WHERE usuario= :usuario and senha= :senha";
             $requsicao_aluno = $corn->prepare($sql);
             $requsicao_aluno->bindValue(":usuario",$this->usuario);
             $requsicao_aluno->bindValue(":senha",$this->senha);

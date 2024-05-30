@@ -89,6 +89,7 @@ if(isset($_POST['user']) && isset($_POST['senha'])){
         session_start();
         $_SESSION['login_aluno'] = true;
         $_SESSION['matricula'] = $resultado['matricula'];
+        $_SESSION['nome_aluno'] = $resultado['nome'];
         header("location:index_aluno.php");
     }
 }

@@ -134,6 +134,8 @@ if(isset($_SESSION['login_senai']) && $_SESSION['login_senai'] === true){
                 </body>
                 </html>
             <?php
+        }else{
+            header("location:index.php");
         }
     }
 }else{

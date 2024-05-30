@@ -67,8 +67,6 @@ if(isset($_SESSION['login_senai']) && $_SESSION['login_senai'] === true){
             <a href="lista_empresa.php" class="btn btn-primary" id="botao">Lista Empresa</a>
             <a href="lista_solicitacao.php" class="btn btn-primary" id="botao">lista solicitacao Aluno</a>
         </div>
-        
-        
     </body>
     </html>
     <?php

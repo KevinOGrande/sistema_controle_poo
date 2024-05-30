@@ -86,6 +86,8 @@ if(isset($_SESSION['login_senai']) && $_SESSION['login_senai'] === true){
                     }
                 }
             }
+        }else{
+            header("location:index.php");
         }
         ?>
     </body>
