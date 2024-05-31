@@ -50,6 +50,10 @@ if(isset($_SESSION['login_aluno']) && $_SESSION['login_aluno'] == true){
             <a href="solicitacao_documento.php" class="btn btn-primary" id="botao">Solicitação de documentos</a>
             <a href="solicitacao_pendente.php" class="btn btn-primary" id="botao">Solicitações Pendentes</a>
             <a href="mandar_falta.php" class="btn btn-primary" id="botao">Envio de Faltas</a>
+            <form action="lista_solicitacao_aluno.php" method="post">
+                <input type="hidden" name="matricula" value="<?php echo $_SESSION['matricula']?>">
+                <input type="submit" value="Lista de Solicitações" class="btn btn-primary" id="botao">
+            </form>
         </div>
     </body>
     </html>
