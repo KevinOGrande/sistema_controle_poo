@@ -7,24 +7,68 @@ if(isset($_SESSION['login_aluno']) && $_SESSION['login_aluno'] == true){
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@100&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:wght@100&display=swap" rel="stylesheet">
         <title>Document</title>
+        <style>
+            header{
+                background-color: #1B62B7;
+            }
+            .container{
+                margin-left: 80%;
+                margin-top: -3%;
+            }
+            .fs-1{
+                text-align: center;
+            }
+            .formulario{
+                display:flex;
+                flex-direction:column;
+                align-items: center;
+                justify-content: center;
+            }
+            .opcao{
+                display: flex;
+            }
+        </style>
     </head>
     <body>
-        <form action="mandar_falta.php" method="post" enctype="multipart/form-data">
+        <header>
+            <nav class="navbar body-tertiary">
+                <img src="image/senai_logo1.png" alt="">
+                <div class="container">
+                    <a href="index_aluno.php" class="btn btn-secondary">Voltar</a>
+                </div>
+            </nav>
+        </header>
+        <p class="fs-1">Envio de Faltas</p>
+        <form action="mandar_falta.php" method="post" enctype="multipart/form-data" class="formulario">
             <label>Sua Justificativa refere-se a:</label>
             <br>
-            <input type="radio" name="justificativa" id="atraso" value="Entrada em atraso">
-            <label>Entrada em atraso</label>
+            <div class="opcao">
+                <input type="radio" name="justificativa" id="atraso" value="Entrada em atraso">
+                <label>Entrada em atraso</label>
+            </div>
             <br>
-            <input type="radio" name="justificativa" id="saida" value="Saida antecipada">
-            <label>Saida antecipada</label>
+            <div class="opcao">
+                <input type="radio" name="justificativa" id="saida" value="Saida antecipada">
+                <label>Saida antecipada</label>
+            </div>
             <br>
-            <input type="radio" name="justificativa" id="umoumais" value="1 dia ou mais">
-            <label>1 dia ou mais</label>
+            <div class="opcao">
+                <input type="radio" name="justificativa" id="umoumais" value="1 dia ou mais">
+                <label>1 dia ou mais</label>
+            </div>
             <br>
             <input type="file" name="falta" id="falta">
             <br>
-            <input type="text" name="observacao" id="observacao">
+            <div class="mb-3">
+                <label class="form-label">Observação:</label>
+                <input type="text" name="observacao" id="observacao"  class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            </div>
             <input type="submit" value="enviar">
         </form>
     </body>

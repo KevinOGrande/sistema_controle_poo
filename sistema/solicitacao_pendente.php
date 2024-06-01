@@ -20,6 +20,13 @@ if(isset($_SESSION['login_aluno']) && $_SESSION['login_aluno'] == true){
                     header{
                         background-color: #1B62B7;
                     }
+                    .container{
+                        margin-left: 80%;
+                        margin-top: -3%;
+                    }
+                    .fs-1{
+                        text-align: center;
+                    }
                 </style>
             </head>
             <body>
@@ -27,10 +34,11 @@ if(isset($_SESSION['login_aluno']) && $_SESSION['login_aluno'] == true){
                     <nav class="navbar body-tertiary">
                         <img src="image/senai_logo1.png" alt="">
                         <div class="container">
-                            <a href="login.php" class="btn btn-secondary">Voltar</a>
+                            <a href="index_aluno.php" class="btn btn-secondary">Voltar</a>
                         </div>
                     </nav>
                 </header>
+                <p class="fs-1">Solicitações Pendentes</p>
                 <table class="table table-striped">
                     <thead>
                         <tr>
@@ -42,26 +50,27 @@ if(isset($_SESSION['login_aluno']) && $_SESSION['login_aluno'] == true){
                     </thead>
                     <tbody>
                         <?php
-                        $arquivo = dir("C:/xampp/htdocs/estudo/sistema_controle_poo/diretorio_aluno/".$matricula."/solicitacao");
-                        while(($nome_arquivo = $arquivo->read()) !== false){
-                            if($nome_arquivo!=="." && $nome_arquivo!==".."){
-                                $url = "http://localhost/estudo/sistema_controle_poo/diretorio_aluno/".$matricula."/solicitacao/".$nome_arquivo;
-                                ?>
-                                <tr>
-                                    <?php
-                                    foreach($resultado->fetchAll(PDO::FETCH_ASSOC) as $linha){
+                        foreach($resultado->fetchALL(PDO::FETCH_ASSOC) as $linha){
+                            ?>
+                            <tr>
+                                <th><?php echo $linha['id']?></th>
+                                <th><?php echo $linha['pedido']?></th>
+                                <?php
+                                $arquivo = dir("C:/xampp/htdocs/estudo/sistema_controle_poo/diretorio_aluno/".$matricula."/solicitacao");
+                                while(($nome_arquivo = $arquivo->read()) !== false){
+                                    if($nome_arquivo!=="." && $nome_arquivo!==".."){
+                                        $url = "http://localhost/estudo/sistema_controle_poo/diretorio_aluno/".$matricula."/solicitacao/".$nome_arquivo;
                                         if(str_contains($nome_arquivo,$linha['id'])){
                                             ?>
-                                            <th><?php echo $linha['id']?></th>
+                                            <th><?php echo $nome_arquivo;?></th>
+                                            <th class="botao_download"><a href=<?php echo $url;?> download="<?php echo $nome_arquivo;?>" class="btn btn-success">Download</a></th>
                                             <?php
                                         }
                                     }
-                                    ?>
-                                    <th><?php echo $nome_arquivo;?></th>
-                                    <th class="botao_download"><a href=<?php echo $url;?> download="<?php echo $nome_arquivo;?>" class="btn btn-success">Download</a></th>
-                                </tr>
-                                <?php
-                            }
+                                }
+                                ?>
+                            </tr>
+                            <?php
                         }
                         ?>
                     </tbody>

@@ -32,6 +32,9 @@ if(isset($_SESSION['login_aluno']) && $_SESSION['login_aluno'] == true){
             .mb-3{
                 width:20%;
             }
+            .opcao{
+                display: flex;
+            }
         </style>
     </head>
     <body>
@@ -45,26 +48,40 @@ if(isset($_SESSION['login_aluno']) && $_SESSION['login_aluno'] == true){
         </header>
         <p class="fs-1">Solicitação de Documentos</p>
         <form action="solicitacao_documento.php" method="get" class="formulario">
-            <input type="radio" name="pedido" id="segunda_via" value="segunda via carteira estudantil">
-            <label>2ª via de carteirinha estudantil - R$ 10,00</label>
+            <div class="opcao">
+                <input type="radio" name="pedido" id="segunda_via" value="segunda via carteira estudantil">
+                <label>2ª via de carteirinha estudantil - R$ 10,00</label>
+            </div>
             <br>
-            <input type="radio" name="pedido" id="tranferencia" value="declaracao de transferencia">
-            <label>Declaração de Transferência - R$ 15,00</label>
+            <div class="opcao">
+                <input type="radio" name="pedido" id="tranferencia" value="declaracao de transferencia">
+                <label>Declaração de Transferência - R$ 15,00</label>
+            </div>
             <br>
-            <input type="radio" name="pedido" id="matricula" value="declaracao de matricula">
-            <label>Declaração de matrícula - Gratuito</label>
+            <div class="opcao">
+                <input type="radio" name="pedido" id="matricula" value="declaracao de matricula">
+                <label>Declaração de matrícula - Gratuito</label>
+            </div>
             <br>
-            <input type="radio" name="pedido" id="estagio" value="carta para estagio optativo">
-            <label>Carta de apresentação para estágio optativo - Gratuito</label>
+            <div class="opcao">
+                <input type="radio" name="pedido" id="estagio" value="carta para estagio optativo">
+                <label>Carta de apresentação para estágio optativo - Gratuito</label>
+                </div>
             <br>
-            <input type="radio" name="pedido" id="ementa" value="Ementa Escolar">
-            <label>Ementa Escolar - R$ 20,00 por disciplina com teto máximo de R$ 100,00</label>
+            <div class="opcao">
+                <input type="radio" name="pedido" id="ementa" value="Ementa Escolar">
+                <label>Ementa Escolar - R$ 20,00 por disciplina com teto máximo de R$ 100,00</label>
+            </div>
             <br>
-            <input type="radio" name="pedido" id="Historico_Parcial" value="Historico Parcial">
-            <label>Histórico Parcial - R$ 15,00</label>
+            <div class="opcao">
+                <input type="radio" name="pedido" id="Historico_Parcial" value="Historico Parcial">
+                <label>Histórico Parcial - R$ 15,00</label>
+            </div>
             <br>
-            <input type="radio" name="pedido" id="recuperacao" value="recuperacao">
-            <label>Recuperação - R$ 10,00</label>
+            <div class="opcao">
+                <input type="radio" name="pedido" id="recuperacao" value="recuperacao">
+                <label>Recuperação - R$ 10,00</label>
+            </div>
             <br>
             <div class="mb-3">
                 <label class="form-label">Observação:</label>
