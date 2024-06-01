@@ -33,6 +33,9 @@ if(isset($_SESSION['login_aluno']) && $_SESSION['login_aluno'] == true){
             .opcao{
                 display: flex;
             }
+            #falta{
+                width: 20%;
+            }
         </style>
     </head>
     <body>
@@ -63,13 +66,13 @@ if(isset($_SESSION['login_aluno']) && $_SESSION['login_aluno'] == true){
                 <label>1 dia ou mais</label>
             </div>
             <br>
-            <input type="file" name="falta" id="falta">
+            <input type="file" name="falta" id="falta" class="form-control">
             <br>
             <div class="mb-3">
                 <label class="form-label">Observação:</label>
                 <input type="text" name="observacao" id="observacao"  class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
             </div>
-            <input type="submit" value="enviar">
+            <input type="submit" value="enviar" class="btn btn-success">
         </form>
     </body>
     </html>

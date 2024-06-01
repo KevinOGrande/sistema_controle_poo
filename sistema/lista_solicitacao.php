@@ -73,6 +73,7 @@ if(isset($_SESSION['login_senai']) && $_SESSION['login_senai'] === true){
                             <th><?php echo $linha['descricao'];?></th>
                             <th>
                                 <form action="mudar_status.php" method="post">
+                                    <input type="hidden" name="matricula" value="<?php echo $linha['matricula']?>">
                                     <input type="hidden" name="id" value="<?php echo $linha['id']?>">
                                     <select name="status" id="status" class="form-select">
                                         <option value="Pronto para retirada">Pronto para Retirada</option>

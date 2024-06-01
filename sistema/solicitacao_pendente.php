@@ -51,26 +51,28 @@ if(isset($_SESSION['login_aluno']) && $_SESSION['login_aluno'] == true){
                     <tbody>
                         <?php
                         foreach($resultado->fetchALL(PDO::FETCH_ASSOC) as $linha){
+                            if($linha['status_pedido'] == "Pagamento Pendente"){
                             ?>
-                            <tr>
-                                <th><?php echo $linha['id']?></th>
-                                <th><?php echo $linha['pedido']?></th>
-                                <?php
-                                $arquivo = dir("C:/xampp/htdocs/estudo/sistema_controle_poo/diretorio_aluno/".$matricula."/solicitacao");
-                                while(($nome_arquivo = $arquivo->read()) !== false){
-                                    if($nome_arquivo!=="." && $nome_arquivo!==".."){
-                                        $url = "http://localhost/estudo/sistema_controle_poo/diretorio_aluno/".$matricula."/solicitacao/".$nome_arquivo;
-                                        if(str_contains($nome_arquivo,$linha['id'])){
-                                            ?>
-                                            <th><?php echo $nome_arquivo;?></th>
-                                            <th class="botao_download"><a href=<?php echo $url;?> download="<?php echo $nome_arquivo;?>" class="btn btn-success">Download</a></th>
-                                            <?php
+                                <tr>
+                                    <th><?php echo $linha['id']?></th>
+                                    <th><?php echo $linha['pedido']?></th>
+                                    <?php
+                                    $arquivo = dir("C:/xampp/htdocs/estudo/sistema_controle_poo/diretorio_aluno/".$matricula."/solicitacao");
+                                    while(($nome_arquivo = $arquivo->read()) !== false){
+                                        if($nome_arquivo!=="." && $nome_arquivo!==".."){
+                                            $url = "http://localhost/estudo/sistema_controle_poo/diretorio_aluno/".$matricula."/solicitacao/".$nome_arquivo;
+                                            if(str_contains($nome_arquivo,$linha['id'])){
+                                                ?>
+                                                <th><?php echo $nome_arquivo;?></th>
+                                                <th class="botao_download"><a href=<?php echo $url;?> download="<?php echo $nome_arquivo;?>" class="btn btn-success">Download</a></th>
+                                                <?php
+                                            }
                                         }
                                     }
-                                }
-                                ?>
-                            </tr>
+                                    ?>
+                                </tr>
                             <?php
+                            }
                         }
                         ?>
                     </tbody>

@@ -5,6 +5,7 @@ class Solicitacao{
     protected $user = "kevin";
     protected $pass = "1234";
     protected $identidade = null;
+    private $id = null;
     private $pedido = null;
     private $status = null;
     private $descricao = null;
@@ -51,10 +52,27 @@ class Solicitacao{
         try{
             $corn = new PDO("mysql:host={$this->host};dbname={$this->dbname}",$this->user,$this->pass);
             $corn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-            $sql = "UPDATE solicitacao SET status_pedido = :pedido WHERE id= :id";
+            $resultado = $corn->query("SELECT * FROM  solicitacao WHERE id='$this->id'");
+            $linha= $resultado->fetch(PDO::FETCH_ASSOC);
+            if($linha['status_pedido'] == "Pagamento Pendente"){
+                $arquivo = dir("C:/xampp/htdocs/estudo/sistema_controle_poo/diretorio_aluno/".$this->identidade."/solicitacao");
+                while(($nome_arquivo = $arquivo->read())!== false){
+                    if($nome_arquivo!=="." && $nome_arquivo!==".."){
+                        if(str_contains($nome_arquivo,$linha['id'])){
+                            require_once "arquivo.php";
+                            $excluir = new Arquivo($this->identidade);
+                            $excluir->__set("nome_arquivo",$nome_arquivo);
+                            $excluir->ExcluirArquivoAlunoSolicitacao();
+                        }
+                        
+                    }   
+                }
+            }
+            
+            $sql = "UPDATE solicitacao SET status_pedido = :status_pedido WHERE id= :id";
             $atualiza = $corn->prepare($sql);
-            $atualiza->bindValue(":id",$this->identidade);
-            $atualiza->bindValue(":pedido",$this->status);
+            $atualiza->bindValue(":id",$this->id);
+            $atualiza->bindValue(":status_pedido",$this->status);
             if($atualiza->execute()){
                 return true;
             }
@@ -78,5 +96,4 @@ class Solicitacao{
         }
     }
 }
-
 ?>

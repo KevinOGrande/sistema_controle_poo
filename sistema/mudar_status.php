@@ -2,7 +2,8 @@
 session_start();
 if(isset($_SESSION['login_senai']) && $_SESSION['login_senai'] === true){
     require_once "solicitacao.php";
-    $mudar = new Solicitacao($_POST['id']);
+    $mudar = new Solicitacao($_POST['matricula']);
+    $mudar->__set("id",$_POST['id']);
     $mudar->__set("status",$_POST['status']);
     if($mudar->MudarStatus()){
         echo "Status Atualizado!";

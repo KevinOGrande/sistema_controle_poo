@@ -39,12 +39,12 @@ class Arquivo{
         }
     }
     public function ExcluirArquivoAlunoSolicitacao(){
-        if(unlink("C:/xampp/htdocs/estudo/sistema_controle_poo/diretorio_empresa/".$this->identidade."/solicitacao/".$this->nome_arquivo)){
+        if(unlink("C:/xampp/htdocs/estudo/sistema_controle_poo/diretorio_aluno/".$this->identidade."/solicitacao/".$this->nome_arquivo)){
             return true;
         }
     }
     public function ExcluirArquivoAlunoFalta(){
-        if(unlink("C:/xampp/htdocs/estudo/sistema_controle_poo/diretorio_empresa/".$this->identidade."/falta/".$this->nome_arquivo)){
+        if(unlink("C:/xampp/htdocs/estudo/sistema_controle_poo/diretorio_aluno/".$this->identidade."/falta/".$this->nome_arquivo)){
             return true;
         }
     }

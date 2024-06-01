@@ -91,6 +91,7 @@ if((isset($_SESSION['login_senai']) && $_SESSION['login_senai'] === true) || (is
                                         </th>
                                         <th>
                                             <form action="mudar_status.php" method="post">
+                                                <input type="hidden" name="matricula" value="<?php echo $linha['matricula']?>">
                                                 <input type="hidden" name="id" value="<?php echo $linha['id']?>">
                                                 <select name="status" id="status">
                                                     <option value="solicitacao negada">Solicitação Negada</option>
