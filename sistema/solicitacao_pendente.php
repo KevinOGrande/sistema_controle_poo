@@ -4,7 +4,7 @@ if(isset($_SESSION['login_aluno']) && $_SESSION['login_aluno'] == true){
     require_once "solicitacao.php";
     $matricula = $_SESSION['matricula'];
     $solicitacao = new Solicitacao($matricula);
-    if($resultado = $solicitacao->ListaSolicitacao()){
+    if($resultado = $solicitacao->SolicitacaoAluno()){
         ?>
             <!DOCTYPE html>
             <html lang="en">
@@ -48,10 +48,18 @@ if(isset($_SESSION['login_aluno']) && $_SESSION['login_aluno'] == true){
                                 $url = "http://localhost/estudo/sistema_controle_poo/diretorio_aluno/".$matricula."/solicitacao/".$nome_arquivo;
                                 ?>
                                 <tr>
+                                    <?php
+                                    foreach($resultado->fetchAll(PDO::FETCH_ASSOC) as $linha){
+                                        if(str_contains($nome_arquivo,$linha['id'])){
+                                            ?>
+                                            <th><?php echo $linha['id']?></th>
+                                            <?php
+                                        }
+                                    }
+                                    ?>
                                     <th><?php echo $nome_arquivo;?></th>
                                     <th class="botao_download"><a href=<?php echo $url;?> download="<?php echo $nome_arquivo;?>" class="btn btn-success">Download</a></th>
                                 </tr>
-                                <br>
                                 <?php
                             }
                         }
