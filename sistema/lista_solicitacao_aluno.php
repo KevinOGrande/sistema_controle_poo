@@ -29,6 +29,7 @@ if((isset($_SESSION['login_senai']) && $_SESSION['login_senai'] === true) || (is
                         margin-left: 80%;
                         margin-top: -3%;
                     }
+                    
                 </style>
             </head>
             <body>
@@ -50,7 +51,6 @@ if((isset($_SESSION['login_senai']) && $_SESSION['login_senai'] === true) || (is
                                 <?php
                             }
                             ?>
-                            
                         </div>
                     </nav>
                 </header>
@@ -63,6 +63,7 @@ if((isset($_SESSION['login_senai']) && $_SESSION['login_senai'] === true) || (is
                             <th><h3>Pedido</h3></th>
                             <th><h3>Status Pedido</h3></th>
                             <th><h3>Descrição</h3></th>
+                            <th><h3>Mudar Status</h3></th>
                         </tr>
                     </thead>
                     <br>
@@ -75,7 +76,6 @@ if((isset($_SESSION['login_senai']) && $_SESSION['login_senai'] === true) || (is
                                 <th><?php echo $linha['matricula'];?></th>
                                 <th><?php echo $linha['pedido'];?></th>
                                 <th><?php echo $linha['status_pedido'];?></th>
-                                <th><?php echo $linha['pedido'];?></th>
                                 <th><?php echo $linha['descricao'];?></th>
                                 <?php
                                 if(isset($_SESSION['login_senai'])){
@@ -93,10 +93,10 @@ if((isset($_SESSION['login_senai']) && $_SESSION['login_senai'] === true) || (is
                                             <form action="mudar_status.php" method="post">
                                                 <input type="hidden" name="matricula" value="<?php echo $linha['matricula']?>">
                                                 <input type="hidden" name="id" value="<?php echo $linha['id']?>">
-                                                <select name="status" id="status">
+                                                <select name="status" id="status" class="form-select">
                                                     <option value="solicitacao negada">Solicitação Negada</option>
                                                 </select>
-                                                <input type="submit" value="mudar">
+                                                <input type="submit" value="mudar" class="btn btn-secondary">
                                             </form>
                                         </th>
                                     <?php
@@ -105,11 +105,11 @@ if((isset($_SESSION['login_senai']) && $_SESSION['login_senai'] === true) || (is
                                         <th>
                                             <form action="mudar_status.php" method="post">
                                                 <input type="hidden" name="id" value="<?php echo $linha['id']?>">
-                                                <select name="status" id="status">
+                                                <select name="status" id="status" class="form-select">
                                                     <option value="Pronto para retirada">Pronto para Retirada</option>
                                                     <option value="Solicitacao negada">Solicitação Negada</option>
                                                 </select>
-                                                <input type="submit" value="mudar">
+                                                <input type="submit" value="mudar" class="btn btn-secondary">
                                             </form>
                                         </th>
                                         <?php

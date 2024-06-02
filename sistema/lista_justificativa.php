@@ -10,9 +10,40 @@ if(isset($_SESSION['login_senai']) && $_SESSION['login_senai'] === true){
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@100&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:wght@100&display=swap" rel="stylesheet">
         <title>Document</title>
+        <style>
+            header{
+                background-color: #1B62B7;
+            }
+            .fs-1{
+                text-align: center;
+            }
+            th{
+                width: 18%;
+            }
+            .container{
+                margin-left: 80%;
+                margin-top: -3%;
+            }
+        </style>
     </head>
     <body>
+        <header>
+            <nav class="navbar body-tertiary">
+                <img src="image/senai_logo1.png" alt="">
+                <div class="container">
+                    <form action="pesquisa.php" method="get">
+                        <input type="hidden" name="pesquisa" value="<?php echo $_POST['matricula'];?>">
+                        <input type="submit" value="Voltar" class="btn btn-secondary">
+                    </form>
+                </div>
+            </nav>
+        </header>
+        <p class="fs-1">Justificativas de Faltas</p>
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -23,12 +54,10 @@ if(isset($_SESSION['login_senai']) && $_SESSION['login_senai'] === true){
                     <th><h3>Download do Arquivo</h3></th>
                 </tr>
             </thead>
-        </table>
-        <?php
-        foreach($resultado->fetchALL(PDO::FETCH_ASSOC) as $linha){
-            ?>
-            <table class="table table-striped">
-                <tbody>
+            <tbody>
+                <?php
+                foreach($resultado->fetchALL(PDO::FETCH_ASSOC) as $linha){
+                    ?>
                     <tr>
                         <th><?php echo $linha['matricula'];?></th>
                         <th><?php echo $linha['id_falta'];?></th>
@@ -52,11 +81,11 @@ if(isset($_SESSION['login_senai']) && $_SESSION['login_senai'] === true){
                         }
                         ?>
                     </tr>
-                </tbody>
-            </table>
-            <?php
-        }
-        ?>
+                    <?php
+                }
+                ?>
+            </tbody>
+        </table>
     </body>
     </html>
     <?php

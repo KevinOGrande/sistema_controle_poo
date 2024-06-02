@@ -89,12 +89,19 @@ if(isset($_SESSION['login_senai']) && $_SESSION['login_senai'] === true){
                         .formulario{
                             margin-left: 2%;
                         }
+                        .container{
+                            margin-left: 80%;
+                            margin-top: -3%;
+                        }
                     </style>
                 </head>
                 <body>
                     <header>
                         <nav class="navbar body-tertiary">
                             <img src="image/senai_logo1.png" alt="">
+                            <div class="container">
+                                <a href="index.php" class="btn btn-secondary">Voltar</a>
+                            </div>
                         </nav>
                     </header>
                     <table class="table table-hover">
@@ -124,10 +131,6 @@ if(isset($_SESSION['login_senai']) && $_SESSION['login_senai'] === true){
                             <input type="hidden" name="senha" value="<?php echo $resutado['senha'];?>">
                             <input type="hidden" name="telefone" value="<?php echo $resutado['telefone'];?>">
                             <input type="submit" value="atualizar" class="btn btn-info">
-                        </form>
-                        <form action="lista_arquivo.php" method="post" class="formulario">
-                            <input type="hidden" name="diretorio" value="<?php echo $resutado['matricula'];?>">
-                            <input type="submit" value="Lista de Faltas" class="btn btn-secondary">
                         </form>
                         <form action="lista_solicitacao_aluno.php" method="post" class="formulario">
                             <input type="hidden" name="matricula" value="<?php echo $resutado['matricula']?>">
