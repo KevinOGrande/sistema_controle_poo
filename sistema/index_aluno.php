@@ -41,7 +41,7 @@ if(isset($_SESSION['login_aluno']) && $_SESSION['login_aluno'] == true){
             <nav class="navbar body-tertiary">
                 <img src="image/senai_logo1.png" alt="">
                 <div class="container">
-                    <a href="login.php" class="btn btn-secondary">Voltar</a>
+                    <a href="login.php" onclick = "return confirm('Desejar sair?')" class="btn btn-secondary">Sair</a>
                 </div>
             </nav>
         </header>
@@ -49,7 +49,13 @@ if(isset($_SESSION['login_aluno']) && $_SESSION['login_aluno'] == true){
         <div class="d-grid gap-2 col-6 mx-auto" id="botao_grupo">
             <a href="solicitacao_documento.php" class="btn btn-primary" id="botao">Solicitação de documentos</a>
             <a href="solicitacao_pendente.php" class="btn btn-primary" id="botao">Solicitações Pendentes</a>
-            <a href="mandar_falta.php" class="btn btn-primary" id="botao">Envio de Faltas</a>
+            <?php
+            if($_SESSION['status'] == "Aluno"){
+                ?>
+                <a href="mandar_falta.php" class="btn btn-primary" id="botao">Envio de Faltas</a>
+                <?php
+            }
+            ?>
             <form action="lista_solicitacao_aluno.php" method="post">
                 <input type="hidden" name="matricula" value="<?php echo $_SESSION['matricula']?>">
                 <input type="submit" value="Lista de Solicitações" class="btn btn-primary" id="botao">

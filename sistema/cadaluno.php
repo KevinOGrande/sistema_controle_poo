@@ -31,12 +31,19 @@
         .fs-1{
             text-align: center;
         }
+        .container{
+            margin-left: 80%;
+            margin-top: -3%;
+        }
     </style>
 </head>
 <body>
     <header>
         <nav class="navbar body-tertiary">
             <img src="image/senai_logo1.png" alt="">
+            <div class="container">
+                <a href="login.php" class="btn btn-secondary">Voltar</a>
+            </div>
         </nav>
     </header>
     <p class="fs-1">Cadastro de Aluno</p>
@@ -64,8 +71,8 @@
         <div>
             <select name="status" id="status" class="form-select">
                 <option>Aluno ou Ex-Aluno?</option>
-                <option value="aluno">Aluno</option>
-                <option value="ex_aluno">Ex Aluno</option>
+                <option value="Aluno">Aluno</option>
+                <option value="Ex-aluno">Ex Aluno</option>
             </select>
         </div>
         <div class="botao">

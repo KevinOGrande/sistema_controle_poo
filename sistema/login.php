@@ -83,6 +83,7 @@ if(isset($_POST['user']) && isset($_POST['senha'])){
         session_start();
         $_SESSION['login_empresa'] = true;
         $_SESSION['empresa'] = $resultado["cnpj"];
+        $_SESSION['nome_empresa'] = $resultado['nome_empresa'];
         header("location:index_empresa.php");
     }
     else if($resultado = $login->UserAluno()){
@@ -90,6 +91,7 @@ if(isset($_POST['user']) && isset($_POST['senha'])){
         $_SESSION['login_aluno'] = true;
         $_SESSION['matricula'] = $resultado['matricula'];
         $_SESSION['nome_aluno'] = $resultado['nome'];
+        $_SESSION['status'] = $resultado['status_aluno'];
         header("location:index_aluno.php");
     }
 }

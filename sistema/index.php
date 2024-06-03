@@ -24,7 +24,7 @@ if(isset($_SESSION['login_senai']) && $_SESSION['login_senai'] === true){
             }
             .form-control{
                 color: #DCDCDC;
-                width: 120%;
+                width: 200%;
                 height: 75%;
             }
             .formulario{
@@ -46,6 +46,10 @@ if(isset($_SESSION['login_senai']) && $_SESSION['login_senai'] === true){
                 justify-content: center;
                 margin-top:2%;
             }
+            .sair{
+                margin-top: 1%;
+                margin-left: 2%;
+            }
         </style>
     </head>
     <body>
@@ -53,6 +57,9 @@ if(isset($_SESSION['login_senai']) && $_SESSION['login_senai'] === true){
             <nav class="navbar body-tertiary">
                 <img src="image/senai_logo1.png" alt="">
             </nav>
+            <div class="sair">
+                <a href="login.php" onclick = "return confirm('Desejar sair?')" class="btn btn-secondary">Sair</a>
+            </div>
             <form action="pesquisa.php" method="get" class="formulario">
                 <input type="text" name="pesquisa" class="form-control">
                 <div class="botao">

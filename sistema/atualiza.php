@@ -54,7 +54,7 @@ if(isset($_SESSION['login_senai']) && $_SESSION['login_senai'] === true){
                             <input type="submit" value="Voltar" class="btn btn-secondary">
                         </form>
                         <?php
-                    }elseif(isset($_POST['matricula'])){
+                    }elseif(isset($_POST['cnpj'])){
                         ?>
                         <form action="pesquisa.php" method="get">
                             <input type="hidden" name="pesquisa" value="<?php echo $_POST['cnpj'];?>">
@@ -72,10 +72,16 @@ if(isset($_SESSION['login_senai']) && $_SESSION['login_senai'] === true){
             ?>
             <form action="atualiza2.php" method="post" class="formulario">
                 <input type="hidden" name="cnpj" value="<?php echo $_POST['cnpj'];?>">
-                <input type="text" name="usuario" value="<?php echo $_POST['usuario'];?>" require class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                <input type="text" name="senha" value="<?php echo $_POST['senha'];?>" require class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                <input type="text" name="telefone" value="<?php echo $_POST['telefone'];?>" require class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                <input type="submit" value="atualizar">
+                <div class="mb-3">
+                    <input type="text" name="usuario" value="<?php echo $_POST['usuario'];?>" require class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                </div>
+                <div class="mb-3">
+                    <input type="text" name="senha" value="<?php echo $_POST['senha'];?>" require class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                </div>
+                <div class="mb-3">
+                    <input type="text" name="telefone" value="<?php echo $_POST['telefone'];?>" require class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                </div>
+                <input type="submit" value="atualizar" class="btn btn-success">
             </form>
             <?php
         }elseif(isset($_POST['matricula'])){

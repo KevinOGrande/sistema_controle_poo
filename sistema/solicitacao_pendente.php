@@ -57,7 +57,9 @@ if(isset($_SESSION['login_aluno']) && $_SESSION['login_aluno'] == true){
                                     <th><?php echo $linha['id']?></th>
                                     <th><?php echo $linha['pedido']?></th>
                                     <?php
-                                    $arquivo = dir("C:/xampp/htdocs/estudo/sistema_controle_poo/diretorio_aluno/".$matricula."/solicitacao");
+                                    require_once "arquivo.php";
+                                    $demanda = new Arquivo($matricula);
+                                    $arquivo = $demanda-> ListaArquivoAlunoSolicitacao();
                                     while(($nome_arquivo = $arquivo->read()) !== false){
                                         if($nome_arquivo!=="." && $nome_arquivo!==".."){
                                             $url = "http://localhost/estudo/sistema_controle_poo/diretorio_aluno/".$matricula."/solicitacao/".$nome_arquivo;

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 13/05/2024 às 03:31
+-- Tempo de geração: 03/06/2024 às 05:59
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -41,7 +41,7 @@ CREATE TABLE `aluno` (
 --
 
 INSERT INTO `aluno` (`matricula`, `nome`, `usuario`, `senha`, `status_aluno`, `telefone`) VALUES
-('6786876', 'Vitin', 'vtn7', '1234', 'aluno', '983445');
+('6786874', 'Vitin', 'fogareu', '1234', 'Aluno', '9834453');
 
 -- --------------------------------------------------------
 
@@ -57,6 +57,13 @@ CREATE TABLE `empresa` (
   `senha` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Despejando dados para a tabela `empresa`
+--
+
+INSERT INTO `empresa` (`cnpj`, `telefone`, `nome_empresa`, `usuario`, `senha`) VALUES
+('96452457', '1234', 'baianotech', 'baiano', '1234');
+
 -- --------------------------------------------------------
 
 --
@@ -65,18 +72,11 @@ CREATE TABLE `empresa` (
 
 CREATE TABLE `falta` (
   `data_envio` char(10) NOT NULL,
-  `observacao` varchar(11) DEFAULT NULL,
   `justificativa` varchar(40) DEFAULT NULL,
   `matricula` char(10) NOT NULL,
-  `id_falta` int(50) NOT NULL primary key
+  `id_falta` int(50) NOT NULL,
+  `observacao` varchar(60) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Despejando dados para a tabela `falta`
---
-
-INSERT INTO `falta` (`data_envio`, `observacao`, `justificativa`, `matricula`, `id_falta`) VALUES
-('13-05-2024', 'estava com ', '1 dia ou mais', '6786876', 7870);
 
 -- --------------------------------------------------------
 
@@ -97,7 +97,8 @@ CREATE TABLE `solicitacao` (
 --
 
 INSERT INTO `solicitacao` (`id`, `matricula`, `pedido`, `status_pedido`, `descricao`) VALUES
-(1, '6786876', 'carta para estagio o', 'Pagamento Pendente', 'para o meu estagio');
+(6, '6786874', 'recuperacao', 'Pronto para retirada', 'para a materia de IOT'),
+(7, '6786874', 'recuperacao', 'Pagamento Pendente', 'para a materia de manuntecao');
 
 -- --------------------------------------------------------
 
@@ -161,7 +162,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de tabela `solicitacao`
 --
 ALTER TABLE `solicitacao`
-  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

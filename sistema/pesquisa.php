@@ -23,6 +23,15 @@ if(isset($_SESSION['login_senai']) && $_SESSION['login_senai'] === true){
                     margin-left: 80%;
                     margin-top: -3%;
                 }
+                .botoes{
+                    margin-top: 10%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+                .formulario{
+                    margin-left: 2%;
+                }
             </style>
         </head>
         <body>
@@ -34,29 +43,51 @@ if(isset($_SESSION['login_senai']) && $_SESSION['login_senai'] === true){
                     </div>
                 </nav>
             </header>
-            <p><?php echo $resutado['cnpj'];?></p>
-            <p><?php echo $resutado['nome_empresa'];?></p>
-            <p><?php echo $resutado['telefone'];?></p>
-            <form action="upload.php" method="post" enctype="multipart/form-data">
-                <input type="hidden" name="identidade" value="<?php echo $_GET['pesquisa'];?>">
-                <input type="file" name="arquivo" id="arquivo">
-                <input type="submit" value="enviar">
-            </form>
-            <form action="excluir.php" method="post">
-                <input type="hidden" name="empresa" value="<?php echo $_GET['pesquisa'];?>">
-                <input type="submit" value="excluir">
-            </form>
-            <form action="atualiza.php" method="post">
-                <input type="hidden" name="cnpj" value="<?php echo $resutado['cnpj'];?>">
-                <input type="hidden" name="usuario" value="<?php echo $resutado['usuario'];?>">
-                <input type="hidden" name="senha" value="<?php echo $resutado['senha'];?>">
-                <input type="hidden" name="telefone" value="<?php echo $resutado['telefone'];?>">
-                <input type="submit" value="atualizar">
-            </form>
-            <form action="lista_arquivo.php" method="post">
-                <input type="hidden" name="cnpj" value="<?php echo $resutado['cnpj'];?>">
-                <input type="submit" value="ver">
-            </form>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th><h3>CNPJ</h3></th>
+                        <th><h3>Nome da Empresa</h3></th>
+                        <th><h3>Telefone</h3></th>
+                        <th><h3>Usuario</h3></th>
+                        <th><h3>Senha</h3></th>
+                        <th><h3>Enviar Relatorio</h3></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th><?php echo $resutado['cnpj'];?></th>
+                        <th><?php echo $resutado['nome_empresa'];?></th>
+                        <th><?php echo $resutado['telefone'];?></th>
+                        <th><?php echo $resutado['usuario'];?></th>
+                        <th><?php echo $resutado['senha'];?></th>
+                        <th>
+                        <form action="upload.php" method="post" enctype="multipart/form-data">
+                            <input type="hidden" name="identidade" value="<?php echo $_GET['pesquisa'];?>">
+                            <input type="file" name="arquivo" id="arquivo" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                            <input type="submit" value="enviar" class="btn btn-success">
+                        </form>
+                        </th>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="botoes">
+                <form action="excluir.php" method="post" class="formulario">
+                    <input type="hidden" name="empresa" value="<?php echo $_GET['pesquisa'];?>">
+                    <input type="submit" value="excluir" class="btn btn-danger">
+                </form>
+                <form action="atualiza.php" method="post" class="formulario">
+                    <input type="hidden" name="cnpj" value="<?php echo $resutado['cnpj'];?>">
+                    <input type="hidden" name="usuario" value="<?php echo $resutado['usuario'];?>">
+                    <input type="hidden" name="senha" value="<?php echo $resutado['senha'];?>">
+                    <input type="hidden" name="telefone" value="<?php echo $resutado['telefone'];?>">
+                    <input type="submit" value="atualizar" class="btn btn-warning">
+                </form>
+                <form action="lista_arquivo.php" method="post" class="formulario">
+                    <input type="hidden" name="cnpj" value="<?php echo $resutado['cnpj'];?>">
+                    <input type="submit" value="Lista de Arquivo" class="btn btn-info">
+                </form>
+            </div>
         </body>
         </html>
         <?php

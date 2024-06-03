@@ -63,7 +63,14 @@ if((isset($_SESSION['login_senai']) && $_SESSION['login_senai'] === true) || (is
                             <th><h3>Pedido</h3></th>
                             <th><h3>Status Pedido</h3></th>
                             <th><h3>Descrição</h3></th>
-                            <th><h3>Mudar Status</h3></th>
+                            <?php
+                            if(isset($_SESSION['login_senai'])){
+                                ?>
+                                <th><h3>Mudar Status</h3></th>
+                                <?php
+                            }
+                            ?>
+                            
                         </tr>
                     </thead>
                     <br>
