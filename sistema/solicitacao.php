@@ -68,7 +68,6 @@ class Solicitacao{
                     }   
                 }
             }
-            
             $sql = "UPDATE solicitacao SET status_pedido = :status_pedido WHERE id= :id";
             $atualiza = $corn->prepare($sql);
             $atualiza->bindValue(":id",$this->id);
