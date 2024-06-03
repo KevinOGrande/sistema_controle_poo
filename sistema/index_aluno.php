@@ -45,7 +45,7 @@ if(isset($_SESSION['login_aluno']) && $_SESSION['login_aluno'] == true){
                 </div>
             </nav>
         </header>
-        <p class="fs-1">Seja Bem-Vindo <?php echo $_SESSION['nome_aluno']?>!</p>
+        <p class="fs-1">Seja Bem-Vindo (a) <?php echo $_SESSION['nome_aluno']?>!</p>
         <div class="d-grid gap-2 col-6 mx-auto" id="botao_grupo">
             <a href="solicitacao_documento.php" class="btn btn-primary" id="botao">Solicitação de documentos</a>
             <a href="solicitacao_pendente.php" class="btn btn-primary" id="botao">Solicitações Pendentes</a>

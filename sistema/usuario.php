@@ -36,7 +36,7 @@ class Usuario{
         try{
             $corn = new PDO("mysql:host={$this->host};dbname={$this->dbname}",$this->user,$this->pass);
             $corn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-            $sql = "SELECT cnpj FROM empresa WHERE usuario= :usuario and senha= :senha";
+            $sql = "SELECT * FROM empresa WHERE usuario= :usuario and senha= :senha";
             $requsicao_empresa = $corn->prepare($sql);
             $requsicao_empresa->bindValue(":usuario",$this->usuario);
             $requsicao_empresa->bindValue(":senha",$this->senha);

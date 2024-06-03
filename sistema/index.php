@@ -47,7 +47,7 @@ if(isset($_SESSION['login_senai']) && $_SESSION['login_senai'] === true){
                 margin-top:2%;
             }
             .sair{
-                margin-top: 1%;
+                margin-top: 0.8%;
                 margin-left: 2%;
             }
         </style>
